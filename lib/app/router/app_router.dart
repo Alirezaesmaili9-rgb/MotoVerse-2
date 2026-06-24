@@ -3,6 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/providers/core_providers.dart';
+import '../../features/admin/presentation/screens/admin_dashboard_screen.dart';
+import '../../features/admin/presentation/screens/admin_news_screen.dart';
+import '../../features/admin/presentation/screens/admin_orders_screen.dart';
+import '../../features/admin/presentation/screens/admin_products_screen.dart';
+import '../../features/admin/presentation/screens/admin_roadside_screen.dart';
+import '../../features/admin/presentation/screens/admin_users_screen.dart';
+import '../../features/auth/presentation/providers/auth_providers.dart';
 import '../../features/auth/presentation/screens/otp_screen.dart';
 import '../../features/auth/presentation/screens/phone_login_screen.dart';
 import '../../features/garage/presentation/screens/garage_screen.dart';
@@ -44,6 +51,12 @@ final routerProvider = Provider<GoRouter>((ref) {
 
       if (!loggedIn) return loggingIn ? null : AppRoutes.login;
       if (loggingIn) return AppRoutes.home;
+
+      // Admin area guard (RLS also enforces this server-side).
+      if (state.matchedLocation.startsWith(AppRoutes.admin)) {
+        final user = ref.read(appUserProvider).valueOrNull;
+        if (user != null && !user.isAdmin) return AppRoutes.home;
+      }
       return null;
     },
     routes: [
@@ -160,6 +173,32 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.notifications,
         builder: (_, __) => const NotificationsScreen(),
+      ),
+
+      // Admin
+      GoRoute(
+        path: AppRoutes.admin,
+        builder: (_, __) => const AdminDashboardScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.adminUsers,
+        builder: (_, __) => const AdminUsersScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.adminProducts,
+        builder: (_, __) => const AdminProductsScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.adminNews,
+        builder: (_, __) => const AdminNewsScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.adminOrders,
+        builder: (_, __) => const AdminOrdersScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.adminRoadside,
+        builder: (_, __) => const AdminRoadsideScreen(),
       ),
 
       // Wallet

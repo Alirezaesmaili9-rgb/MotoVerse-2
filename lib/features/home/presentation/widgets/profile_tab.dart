@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../../app/router/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/persian_utils.dart';
+import '../../../admin/presentation/providers/admin_providers.dart';
 import '../../../auth/presentation/providers/auth_providers.dart';
 import '../../../wallet/presentation/providers/wallet_providers.dart';
 
@@ -97,6 +98,13 @@ class ProfileTab extends ConsumerWidget {
             color: AppColors.cyan,
             onTap: () => context.push(AppRoutes.walletTransactions),
           ),
+          if (ref.watch(isAdminProvider))
+            _MenuTile(
+              icon: Icons.admin_panel_settings_outlined,
+              label: 'پنل مدیریت',
+              color: AppColors.textPrimary,
+              onTap: () => context.push(AppRoutes.admin),
+            ),
           _MenuTile(
             icon: Icons.logout,
             label: 'خروج از حساب',

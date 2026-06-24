@@ -9,6 +9,7 @@ class AppUser extends Equatable {
     this.fullName,
     this.avatarUrl,
     this.walletBalance = 0,
+    this.role = 'rider',
   });
 
   final String id;
@@ -17,6 +18,9 @@ class AppUser extends Equatable {
   final String? fullName;
   final String? avatarUrl;
   final int walletBalance; // Toman
+  final String role; // rider | admin | technician
+
+  bool get isAdmin => role == 'admin';
 
   AppUser copyWith({
     String? fullName,
@@ -35,5 +39,5 @@ class AppUser extends Equatable {
 
   @override
   List<Object?> get props =>
-      [id, phone, email, fullName, avatarUrl, walletBalance];
+      [id, phone, email, fullName, avatarUrl, walletBalance, role];
 }

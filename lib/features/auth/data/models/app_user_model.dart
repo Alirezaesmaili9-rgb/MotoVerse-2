@@ -17,6 +17,7 @@ class AppUserModel {
       avatarUrl: profile?['avatar_url'] as String? ??
           user.userMetadata?['avatar_url'] as String?,
       walletBalance: (profile?['wallet_balance'] as num?)?.toInt() ?? 0,
+      role: profile?['role'] as String? ?? 'rider',
     );
   }
 

@@ -82,6 +82,7 @@ lib/
    ├─ roadside/     { domain · data · presentation }  ← assistance + live tracking
    ├─ motor_world/  { domain · data · presentation }  ← news
    ├─ notifications/{ domain · data · presentation }  ← in-app + realtime badge
+   ├─ admin/        { domain · data · presentation }  ← role-gated dashboard
    └─ home/         { presentation }                  ← command center + shell
 ```
 
@@ -141,6 +142,9 @@ dummy placeholders), `MvCard`, `PrimaryButton`.
    Supabase realtime (status timeline + ETA), history
 ✅ **Motor World** — news feed with tag filters + article detail; home carousel
 ✅ **Notifications** — in-app center with live unread badge (realtime)
+✅ **Admin dashboard** — role-gated in-app panel: analytics, user management
+   (role toggle + send notification), product/news CRUD, order & roadside
+   management. Guarded by `is_admin()` RLS + admin override policies
 ✅ Supabase schema for **every** module + Row Level Security + seed data
 
 ### AI Copilot (provider-agnostic)
@@ -191,10 +195,21 @@ while still wiring the tools to real app data.
 These modules have backend tables + RLS ready; the Flutter slices follow the
 exact `domain/data/presentation` pattern above:
 
-- Admin dashboard (web)
 - FCM push delivery (in-app notifications + realtime badge already built)
-- Analytics
+- Analytics export / charts (admin dashboard shows live counts today)
 - Google Maps rendering for Service Centers / Roadside (deps wired; needs API key)
+
+### Becoming an admin
+
+The dashboard appears in Profile only for users whose `profiles.role = 'admin'`.
+Promote a user from Supabase SQL:
+
+```sql
+update public.profiles set role = 'admin' where phone = '+9891...';
+```
+
+Admin actions are authorized by the `is_admin()` RLS policies + the override
+policies in migration `0006` — the panel is enforced server-side, not just hidden.
 
 ---
 

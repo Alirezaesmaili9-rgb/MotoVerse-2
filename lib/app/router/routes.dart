@@ -44,6 +44,14 @@ class AppRoutes {
   // Notifications
   static const String notifications = '/notifications';
 
+  // Admin
+  static const String admin = '/admin';
+  static const String adminUsers = '/admin/users';
+  static const String adminProducts = '/admin/products';
+  static const String adminNews = '/admin/news';
+  static const String adminOrders = '/admin/orders';
+  static const String adminRoadside = '/admin/roadside';
+
   // Wallet
   static const String wallet = '/wallet';
   static const String walletRecharge = '/wallet/recharge';
