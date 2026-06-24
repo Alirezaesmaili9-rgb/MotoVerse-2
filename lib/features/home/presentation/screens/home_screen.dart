@@ -12,6 +12,7 @@ import '../../../auth/presentation/providers/auth_providers.dart';
 import '../../../garage/presentation/providers/garage_providers.dart';
 import '../../../maintenance/domain/entities/maintenance_status.dart';
 import '../../../maintenance/presentation/providers/maintenance_providers.dart';
+import '../widgets/news_banner.dart';
 import '../widgets/quick_action_grid.dart';
 
 /// The Home command center: welcome, primary motorcycle card with live plate,
@@ -58,6 +59,20 @@ class HomeScreen extends ConsumerWidget {
                 balance: user?.walletBalance ?? 0,
                 onTap: () => context.push(AppRoutes.wallet),
               ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('دنیای موتور',
+                      style: Theme.of(context).textTheme.titleMedium),
+                  TextButton(
+                    onPressed: () => context.push(AppRoutes.motorWorld),
+                    child: const Text('همه اخبار'),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              const HomeNewsBanner(),
             ],
           ),
         ),

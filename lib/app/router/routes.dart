@@ -37,6 +37,10 @@ class AppRoutes {
   static const String roadsideTracking = '/roadside/tracking';
   static const String roadsideHistory = '/roadside/history';
 
+  // Motor World (news)
+  static const String motorWorld = '/motor-world';
+  static const String newsArticle = '/motor-world/article';
+
   // Wallet
   static const String wallet = '/wallet';
   static const String walletRecharge = '/wallet/recharge';
