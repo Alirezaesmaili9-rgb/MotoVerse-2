@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../../core/error/failures.dart';
+import '../../../insurance/data/models/insurance_policy_model.dart';
+import '../../../insurance/domain/entities/insurance_policy.dart';
 import '../../../marketplace/data/models/order_model.dart';
 import '../../../marketplace/data/models/product_model.dart';
 import '../../../marketplace/domain/entities/order.dart';
@@ -10,6 +12,9 @@ import '../../../motor_world/data/models/news_article_model.dart';
 import '../../../motor_world/domain/entities/news_article.dart';
 import '../../../roadside/data/models/roadside_request_model.dart';
 import '../../../roadside/domain/entities/roadside_request.dart';
+import '../../../service_centers/data/models/service_center_model.dart';
+import '../../../service_centers/domain/entities/service_booking.dart';
+import '../../../service_centers/domain/entities/service_center.dart';
 import '../../domain/entities/admin_stats.dart';
 import '../../domain/entities/admin_user.dart';
 import '../../domain/repositories/admin_repository.dart';
@@ -169,6 +174,68 @@ class AdminRepositoryImpl implements AdminRepository {
             if (status != null) 'status': status,
             if (etaMinutes != null) 'eta_minutes': etaMinutes,
           }).eq('id', id));
+
+  // -------------------------------------------------- service centers/bookings
+  @override
+  Future<Either<Failure, List<ServiceCenter>>> getServiceCenters() async {
+    try {
+      final rows = await _client
+          .from('service_centers')
+          .select()
+          .order('rating', ascending: false);
+      return Right(rows.map(ServiceCenterModel.fromJson).toList());
+    } catch (_) {
+      return const Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> upsertServiceCenter(
+          Map<String, dynamic> data) =>
+      _run(() => _client.from('service_centers').upsert(data));
+
+  @override
+  Future<Either<Failure, Unit>> deleteServiceCenter(String id) =>
+      _run(() => _client.from('service_centers').delete().eq('id', id));
+
+  @override
+  Future<Either<Failure, List<ServiceBooking>>> getBookings() async {
+    try {
+      final rows = await _client
+          .from('service_bookings')
+          .select('*, service_centers(name)')
+          .order('created_at', ascending: false);
+      return Right(rows.map(ServiceBookingModel.fromJson).toList());
+    } catch (_) {
+      return const Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> setBookingStatus(String id, String status) =>
+      _run(() => _client
+          .from('service_bookings')
+          .update({'status': status}).eq('id', id));
+
+  // ------------------------------------------------------------- insurance
+  @override
+  Future<Either<Failure, List<InsurancePolicy>>> getPolicies() async {
+    try {
+      final rows = await _client
+          .from('insurance_policies')
+          .select()
+          .order('created_at', ascending: false);
+      return Right(rows.map(InsurancePolicyModel.fromJson).toList());
+    } catch (_) {
+      return const Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> setPolicyStatus(String id, String status) =>
+      _run(() => _client
+          .from('insurance_policies')
+          .update({'status': status}).eq('id', id));
 
   /// Wraps a fire-and-forget mutation, mapping exceptions to a [Failure].
   Future<Either<Failure, Unit>> _run(Future<void> Function() action) async {

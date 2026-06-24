@@ -1,10 +1,13 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failures.dart';
+import '../../../insurance/domain/entities/insurance_policy.dart';
 import '../../../marketplace/domain/entities/order.dart';
 import '../../../marketplace/domain/entities/product.dart';
 import '../../../motor_world/domain/entities/news_article.dart';
 import '../../../roadside/domain/entities/roadside_request.dart';
+import '../../../service_centers/domain/entities/service_booking.dart';
+import '../../../service_centers/domain/entities/service_center.dart';
 import '../entities/admin_stats.dart';
 import '../entities/admin_user.dart';
 
@@ -44,4 +47,15 @@ abstract interface class AdminRepository {
     String? status,
     int? etaMinutes,
   });
+
+  // Service centers + bookings
+  Future<Either<Failure, List<ServiceCenter>>> getServiceCenters();
+  Future<Either<Failure, Unit>> upsertServiceCenter(Map<String, dynamic> data);
+  Future<Either<Failure, Unit>> deleteServiceCenter(String id);
+  Future<Either<Failure, List<ServiceBooking>>> getBookings();
+  Future<Either<Failure, Unit>> setBookingStatus(String id, String status);
+
+  // Insurance
+  Future<Either<Failure, List<InsurancePolicy>>> getPolicies();
+  Future<Either<Failure, Unit>> setPolicyStatus(String id, String status);
 }

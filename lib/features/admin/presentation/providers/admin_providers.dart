@@ -2,10 +2,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/providers/core_providers.dart';
 import '../../../auth/presentation/providers/auth_providers.dart';
+import '../../../insurance/domain/entities/insurance_policy.dart';
 import '../../../marketplace/domain/entities/order.dart';
 import '../../../marketplace/domain/entities/product.dart';
 import '../../../motor_world/domain/entities/news_article.dart';
 import '../../../roadside/domain/entities/roadside_request.dart';
+import '../../../service_centers/domain/entities/service_booking.dart';
+import '../../../service_centers/domain/entities/service_center.dart';
 import '../../data/repositories/admin_repository_impl.dart';
 import '../../domain/entities/admin_stats.dart';
 import '../../domain/entities/admin_user.dart';
@@ -53,6 +56,24 @@ final adminRoadsideProvider =
     FutureProvider.autoDispose<List<RoadsideRequest>>((ref) async {
   final res = await ref.watch(adminRepositoryProvider).getRoadside();
   return res.fold((f) => throw Exception(f.message), (r) => r);
+});
+
+final adminCentersProvider =
+    FutureProvider.autoDispose<List<ServiceCenter>>((ref) async {
+  final res = await ref.watch(adminRepositoryProvider).getServiceCenters();
+  return res.fold((f) => throw Exception(f.message), (c) => c);
+});
+
+final adminBookingsProvider =
+    FutureProvider.autoDispose<List<ServiceBooking>>((ref) async {
+  final res = await ref.watch(adminRepositoryProvider).getBookings();
+  return res.fold((f) => throw Exception(f.message), (b) => b);
+});
+
+final adminPoliciesProvider =
+    FutureProvider.autoDispose<List<InsurancePolicy>>((ref) async {
+  final res = await ref.watch(adminRepositoryProvider).getPolicies();
+  return res.fold((f) => throw Exception(f.message), (p) => p);
 });
 
 /// Mutations + targeted invalidation.
@@ -120,5 +141,29 @@ class AdminActions {
     await _repo.updateRoadside(id, status: status, etaMinutes: etaMinutes);
     ref.invalidate(adminRoadsideProvider);
     ref.invalidate(adminStatsProvider);
+  }
+
+  Future<String?> saveServiceCenter(Map<String, dynamic> data) async {
+    final res = await _repo.upsertServiceCenter(data);
+    return res.fold((f) => f.message, (_) {
+      ref.invalidate(adminCentersProvider);
+      return null;
+    });
+  }
+
+  Future<void> deleteServiceCenter(String id) async {
+    await _repo.deleteServiceCenter(id);
+    ref.invalidate(adminCentersProvider);
+  }
+
+  Future<void> setBookingStatus(String id, String status) async {
+    await _repo.setBookingStatus(id, status);
+    ref.invalidate(adminBookingsProvider);
+    ref.invalidate(adminStatsProvider);
+  }
+
+  Future<void> setPolicyStatus(String id, String status) async {
+    await _repo.setPolicyStatus(id, status);
+    ref.invalidate(adminPoliciesProvider);
   }
 }

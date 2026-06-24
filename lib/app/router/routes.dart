@@ -51,6 +51,9 @@ class AppRoutes {
   static const String adminNews = '/admin/news';
   static const String adminOrders = '/admin/orders';
   static const String adminRoadside = '/admin/roadside';
+  static const String adminCenters = '/admin/centers';
+  static const String adminBookings = '/admin/bookings';
+  static const String adminPolicies = '/admin/policies';
 
   // Wallet
   static const String wallet = '/wallet';

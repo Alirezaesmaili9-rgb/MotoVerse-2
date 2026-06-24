@@ -3,9 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/providers/core_providers.dart';
+import '../../features/admin/presentation/screens/admin_bookings_screen.dart';
+import '../../features/admin/presentation/screens/admin_centers_screen.dart';
 import '../../features/admin/presentation/screens/admin_dashboard_screen.dart';
 import '../../features/admin/presentation/screens/admin_news_screen.dart';
 import '../../features/admin/presentation/screens/admin_orders_screen.dart';
+import '../../features/admin/presentation/screens/admin_policies_screen.dart';
 import '../../features/admin/presentation/screens/admin_products_screen.dart';
 import '../../features/admin/presentation/screens/admin_roadside_screen.dart';
 import '../../features/admin/presentation/screens/admin_users_screen.dart';
@@ -206,6 +209,18 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.adminRoadside,
         builder: (_, __) => const AdminRoadsideScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.adminCenters,
+        builder: (_, __) => const AdminCentersScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.adminBookings,
+        builder: (_, __) => const AdminBookingsScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.adminPolicies,
+        builder: (_, __) => const AdminPoliciesScreen(),
       ),
 
       // Wallet
