@@ -28,6 +28,10 @@ class AppRoutes {
   static const String insurance = '/insurance';
   static const String policies = '/insurance/policies';
 
+  // Service centers
+  static const String serviceCenters = '/service-centers';
+  static const String bookings = '/service-centers/bookings';
+
   // Wallet
   static const String wallet = '/wallet';
   static const String walletRecharge = '/wallet/recharge';

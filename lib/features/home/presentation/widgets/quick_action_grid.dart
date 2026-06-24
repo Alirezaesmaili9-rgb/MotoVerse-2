@@ -23,7 +23,8 @@ class QuickActionGrid extends StatelessWidget {
       _Action('امداد', Icons.emergency_outlined, AppColors.danger, null),
       _Action('مارکت', Icons.storefront_outlined, AppColors.marketplacePurple,
           () => context.push(AppRoutes.marketplace)),
-      _Action('تعمیرگاه', Icons.location_on_outlined, AppColors.warning, null),
+      _Action('تعمیرگاه', Icons.location_on_outlined, AppColors.warning,
+          () => context.push(AppRoutes.serviceCenters)),
       _Action('ابزارها', Icons.auto_awesome_outlined, const Color(0xFF0284C7),
           () => context.push(AppRoutes.tools)),
     ];
