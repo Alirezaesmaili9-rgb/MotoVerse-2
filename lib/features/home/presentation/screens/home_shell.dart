@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../garage/presentation/screens/garage_screen.dart';
+import '../../../marketplace/presentation/screens/marketplace_screen.dart';
 import '../widgets/placeholder_tab.dart';
+import '../widgets/profile_tab.dart';
 import 'home_screen.dart';
 
 /// Bottom-nav shell hosting the five primary destinations. Tabs are kept alive
@@ -20,9 +22,9 @@ class _HomeShellState extends ConsumerState<HomeShell> {
   static const _tabs = <Widget>[
     HomeScreen(),
     GarageScreen(),
-    PlaceholderTab(title: 'مارکت‌پلیس', icon: Icons.storefront_outlined),
+    MarketplaceScreen(),
     PlaceholderTab(title: 'امداد جاده‌ای', icon: Icons.emergency_outlined),
-    PlaceholderTab(title: 'پروفایل من', icon: Icons.person_outline),
+    ProfileTab(),
   ];
 
   @override

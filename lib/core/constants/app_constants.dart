@@ -16,6 +16,9 @@ class AppConstants {
   static const String tServiceCenters = 'service_centers';
   static const String tRoadsideRequests = 'roadside_requests';
   static const String tProducts = 'products';
+  static const String tProductReviews = 'product_reviews';
+  static const String tFavorites = 'favorites';
+  static const String tCartItems = 'cart_items';
   static const String tOrders = 'orders';
   static const String tOrderItems = 'order_items';
   static const String tWalletTransactions = 'wallet_transactions';

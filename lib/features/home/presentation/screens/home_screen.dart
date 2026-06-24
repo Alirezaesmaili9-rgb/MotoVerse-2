@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../app/router/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_dimens.dart';
 import '../../../../core/utils/persian_utils.dart';
@@ -52,7 +54,10 @@ class HomeScreen extends ConsumerWidget {
               const SizedBox(height: 12),
               const QuickActionGrid(),
               const SizedBox(height: 20),
-              _WalletStrip(balance: user?.walletBalance ?? 0),
+              _WalletStrip(
+                balance: user?.walletBalance ?? 0,
+                onTap: () => context.push(AppRoutes.wallet),
+              ),
             ],
           ),
         ),
@@ -183,13 +188,15 @@ class _MaintenanceReminder extends StatelessWidget {
 }
 
 class _WalletStrip extends StatelessWidget {
-  const _WalletStrip({required this.balance});
+  const _WalletStrip({required this.balance, required this.onTap});
   final int balance;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return MvCard(
       color: const Color(0xFF0F172A),
+      onTap: onTap,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -207,7 +214,7 @@ class _WalletStrip extends StatelessWidget {
             ],
           ),
           FilledButton.tonal(
-            onPressed: () {},
+            onPressed: onTap,
             child: const Text('شارژ'),
           ),
         ],

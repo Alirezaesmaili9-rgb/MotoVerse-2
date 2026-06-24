@@ -73,6 +73,8 @@ lib/
    ├─ auth/        { domain · data · presentation }   ← Phone OTP / Google / Apple
    ├─ garage/      { domain · data · presentation }   ← My Garage (multi-bike)
    ├─ maintenance/ { domain · data · presentation }   ← service intervals
+   ├─ marketplace/ { domain · data · presentation }   ← parts/accessories, cart, orders
+   ├─ wallet/      { domain · data · presentation }   ← balance, recharge, payments
    └─ home/        { presentation }                   ← command center + shell
 ```
 
@@ -115,18 +117,34 @@ dummy placeholders), `MvCard`, `PrimaryButton`.
    (no health percentages, per product spec), unit-tested
 ✅ **Home** — command center (bike card, next-maintenance reminder, quick
    actions, wallet strip) + bottom-nav shell
+✅ **Marketplace** — Parts (purple) + Accessories (pink) verticals, search,
+   category chips, sort/filter, product detail, ratings & reviews, favorites,
+   server-backed cart, checkout, order tracking timeline
+✅ **Wallet** — balance, transaction history, recharge via a **modular payment
+   gateway** abstraction (sandbox impl), 2% cashback, wallet-funded checkout
 ✅ Supabase schema for **every** module + Row Level Security + seed data
+
+### Marketplace + Wallet design notes
+
+- **Money is never mutated from the client.** `wallet_transactions` is
+  read-only under RLS; balance changes happen only through the SECURITY DEFINER
+  RPCs `wallet_recharge(amount, ref)` and `place_order(items)` (migration
+  `0004`). `place_order` validates stock, debits the wallet, writes the order +
+  items, credits cashback, and clears the cart **atomically**.
+- **Payments are provider-agnostic.** The recharge flow depends only on the
+  `PaymentGateway` interface; swap Zarinpal/IDPay/any PSP by overriding
+  `paymentGatewayProvider` — no UI or repository changes.
+- **Cart is server-backed** (`cart_items`) so it persists across devices.
 
 ## Roadmap (next slices on the same architecture)
 
 These modules have backend tables + RLS ready; the Flutter slices follow the
 exact `domain/data/presentation` pattern above:
 
-- MotoFix (diagnostics) · MotoSanj (valuation) · MotoType (recommendation)
-- MotoBimeh (insurance) · Roadside Assistance (live tracking)
-- Marketplace (parts/accessories) + Wallet + Orders
-- Service Centers (map + booking) · Motor World (news) · AI Copilot
-- Admin dashboard · FCM notifications · Analytics
+- MotoFix (diagnostics) · MotoSanj (valuation) · AI Copilot **(next up)**
+- MotoType (recommendation) · MotoBimeh (insurance)
+- Roadside Assistance (live tracking) · Service Centers (map + booking)
+- Motor World (news) · Admin dashboard · FCM notifications · Analytics
 
 ---
 

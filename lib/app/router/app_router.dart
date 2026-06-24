@@ -7,6 +7,15 @@ import '../../features/auth/presentation/screens/otp_screen.dart';
 import '../../features/auth/presentation/screens/phone_login_screen.dart';
 import '../../features/garage/presentation/screens/garage_screen.dart';
 import '../../features/home/presentation/screens/home_shell.dart';
+import '../../features/marketplace/presentation/screens/cart_screen.dart';
+import '../../features/marketplace/presentation/screens/checkout_screen.dart';
+import '../../features/marketplace/presentation/screens/favorites_screen.dart';
+import '../../features/marketplace/presentation/screens/marketplace_screen.dart';
+import '../../features/marketplace/presentation/screens/orders_screen.dart';
+import '../../features/marketplace/presentation/screens/product_detail_screen.dart';
+import '../../features/wallet/presentation/screens/recharge_screen.dart';
+import '../../features/wallet/presentation/screens/transactions_screen.dart';
+import '../../features/wallet/presentation/screens/wallet_screen.dart';
 import 'routes.dart';
 
 /// App router with auth-aware redirects. Unauthenticated users are sent to
@@ -41,6 +50,47 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.garage,
         builder: (_, __) => const GarageScreen(),
+      ),
+
+      // Marketplace
+      GoRoute(
+        path: AppRoutes.marketplace,
+        builder: (_, __) => const MarketplaceScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.productDetail,
+        builder: (_, state) =>
+            ProductDetailScreen(productId: state.extra! as String),
+      ),
+      GoRoute(
+        path: AppRoutes.favorites,
+        builder: (_, __) => const FavoritesScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.cart,
+        builder: (_, __) => const CartScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.checkout,
+        builder: (_, __) => const CheckoutScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.orders,
+        builder: (_, __) => const OrdersScreen(),
+      ),
+
+      // Wallet
+      GoRoute(
+        path: AppRoutes.wallet,
+        builder: (_, __) => const WalletScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.walletRecharge,
+        builder: (_, __) => const RechargeScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.walletTransactions,
+        builder: (_, __) => const TransactionsScreen(),
       ),
     ],
   );
