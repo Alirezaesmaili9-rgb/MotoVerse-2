@@ -18,6 +18,7 @@ import '../../features/insurance/presentation/screens/policies_screen.dart';
 import '../../features/marketplace/presentation/screens/product_detail_screen.dart';
 import '../../features/motor_world/presentation/screens/article_detail_screen.dart';
 import '../../features/motor_world/presentation/screens/motor_world_screen.dart';
+import '../../features/notifications/presentation/screens/notifications_screen.dart';
 import '../../features/roadside/presentation/screens/roadside_history_screen.dart';
 import '../../features/roadside/presentation/screens/roadside_screen.dart';
 import '../../features/roadside/presentation/screens/roadside_tracking_screen.dart';
@@ -153,6 +154,12 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: AppRoutes.newsArticle,
         builder: (_, state) =>
             ArticleDetailScreen(articleId: state.extra! as String),
+      ),
+
+      // Notifications
+      GoRoute(
+        path: AppRoutes.notifications,
+        builder: (_, __) => const NotificationsScreen(),
       ),
 
       // Wallet

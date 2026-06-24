@@ -41,6 +41,9 @@ class AppRoutes {
   static const String motorWorld = '/motor-world';
   static const String newsArticle = '/motor-world/article';
 
+  // Notifications
+  static const String notifications = '/notifications';
+
   // Wallet
   static const String wallet = '/wallet';
   static const String walletRecharge = '/wallet/recharge';

@@ -75,9 +75,14 @@ lib/
    ├─ maintenance/ { domain · data · presentation }   ← service intervals
    ├─ marketplace/ { domain · data · presentation }   ← parts/accessories, cart, orders
    ├─ wallet/      { domain · data · presentation }   ← balance, recharge, payments
-   ├─ tools/       { domain · data · presentation }   ← MotoFix/MotoSanj/MotoType WebView
-   ├─ copilot/     { domain · data · presentation }   ← AI chat (provider-agnostic)
-   └─ home/        { presentation }                   ← command center + shell
+   ├─ tools/        { domain · data · presentation }  ← MotoFix/MotoSanj/MotoType WebView
+   ├─ copilot/      { domain · data · presentation }  ← AI chat (provider-agnostic)
+   ├─ insurance/    { domain · data · presentation }  ← MotoBimeh
+   ├─ service_centers/ { domain · data · presentation } ← centers + booking
+   ├─ roadside/     { domain · data · presentation }  ← assistance + live tracking
+   ├─ motor_world/  { domain · data · presentation }  ← news
+   ├─ notifications/{ domain · data · presentation }  ← in-app + realtime badge
+   └─ home/         { presentation }                  ← command center + shell
 ```
 
 **Layer responsibilities**
@@ -129,6 +134,13 @@ dummy placeholders), `MvCard`, `PrimaryButton`.
 ✅ **AI Copilot** — globally accessible streaming chat behind a
    **provider-agnostic `AiProvider`** abstraction (offline mock for now),
    grounded in the rider's bike + maintenance state
+✅ **MotoBimeh (insurance)** — compare provider offers by kind, buy online,
+   "my policies" with renewal reminders
+✅ **Service Centers** — searchable catalog, ratings/brands, appointment booking
+✅ **Roadside Assistance** — dispatch by service type, **live tracking** via
+   Supabase realtime (status timeline + ETA), history
+✅ **Motor World** — news feed with tag filters + article detail; home carousel
+✅ **Notifications** — in-app center with live unread badge (realtime)
 ✅ Supabase schema for **every** module + Row Level Security + seed data
 
 ### AI Copilot (provider-agnostic)
@@ -179,9 +191,10 @@ while still wiring the tools to real app data.
 These modules have backend tables + RLS ready; the Flutter slices follow the
 exact `domain/data/presentation` pattern above:
 
-- MotoBimeh (insurance) · Roadside Assistance (live tracking)
-- Service Centers (map + booking) · Motor World (news)
-- Admin dashboard · FCM notifications · Analytics
+- Admin dashboard (web)
+- FCM push delivery (in-app notifications + realtime badge already built)
+- Analytics
+- Google Maps rendering for Service Centers / Roadside (deps wired; needs API key)
 
 ---
 

@@ -12,6 +12,7 @@ import '../../../auth/presentation/providers/auth_providers.dart';
 import '../../../garage/presentation/providers/garage_providers.dart';
 import '../../../maintenance/domain/entities/maintenance_status.dart';
 import '../../../maintenance/presentation/providers/maintenance_providers.dart';
+import '../../../notifications/presentation/providers/notifications_providers.dart';
 import '../widgets/news_banner.dart';
 import '../widgets/quick_action_grid.dart';
 
@@ -81,12 +82,14 @@ class HomeScreen extends ConsumerWidget {
   }
 }
 
-class _Welcome extends StatelessWidget {
+class _Welcome extends ConsumerWidget {
   const _Welcome({this.name});
   final String? name;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final unread = ref.watch(unreadCountProvider).valueOrNull ?? 0;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -100,10 +103,39 @@ class _Welcome extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodySmall),
           ],
         ),
-        const CircleAvatar(
-          radius: 22,
-          backgroundColor: AppColors.primaryLight,
-          child: Icon(Icons.notifications_none, color: AppColors.primary),
+        GestureDetector(
+          onTap: () => context.push(AppRoutes.notifications),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              const CircleAvatar(
+                radius: 22,
+                backgroundColor: AppColors.primaryLight,
+                child:
+                    Icon(Icons.notifications_none, color: AppColors.primary),
+              ),
+              if (unread > 0)
+                Positioned(
+                  top: 4,
+                  right: 6,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    constraints:
+                        const BoxConstraints(minWidth: 16, minHeight: 16),
+                    decoration: const BoxDecoration(
+                        color: AppColors.danger, shape: BoxShape.circle),
+                    child: Text(
+                      unread > 9 ? '+۹' : PersianUtils.toFa(unread.toString()),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 9,
+                          fontWeight: FontWeight.w800),
+                    ),
+                  ),
+                ),
+            ],
+          ),
         ),
       ],
     );
