@@ -13,6 +13,8 @@ import '../../features/marketplace/presentation/screens/favorites_screen.dart';
 import '../../features/marketplace/presentation/screens/marketplace_screen.dart';
 import '../../features/marketplace/presentation/screens/orders_screen.dart';
 import '../../features/copilot/presentation/screens/copilot_screen.dart';
+import '../../features/insurance/presentation/screens/insurance_screen.dart';
+import '../../features/insurance/presentation/screens/policies_screen.dart';
 import '../../features/marketplace/presentation/screens/product_detail_screen.dart';
 import '../../features/tools/domain/entities/embedded_tool.dart';
 import '../../features/tools/presentation/screens/tool_webview_screen.dart';
@@ -98,6 +100,16 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.copilot,
         builder: (_, __) => const CopilotScreen(),
+      ),
+
+      // Insurance
+      GoRoute(
+        path: AppRoutes.insurance,
+        builder: (_, __) => const InsuranceScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.policies,
+        builder: (_, __) => const PoliciesScreen(),
       ),
 
       // Wallet
