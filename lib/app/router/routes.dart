@@ -32,6 +32,11 @@ class AppRoutes {
   static const String serviceCenters = '/service-centers';
   static const String bookings = '/service-centers/bookings';
 
+  // Roadside assistance
+  static const String roadside = '/roadside';
+  static const String roadsideTracking = '/roadside/tracking';
+  static const String roadsideHistory = '/roadside/history';
+
   // Wallet
   static const String wallet = '/wallet';
   static const String walletRecharge = '/wallet/recharge';

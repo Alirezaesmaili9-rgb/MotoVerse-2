@@ -6,7 +6,7 @@ import '../../../../app/router/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../garage/presentation/screens/garage_screen.dart';
 import '../../../marketplace/presentation/screens/marketplace_screen.dart';
-import '../widgets/placeholder_tab.dart';
+import '../../../roadside/presentation/screens/roadside_screen.dart';
 import '../widgets/profile_tab.dart';
 import 'home_screen.dart';
 
@@ -26,7 +26,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
     HomeScreen(),
     GarageScreen(),
     MarketplaceScreen(),
-    PlaceholderTab(title: 'امداد جاده‌ای', icon: Icons.emergency_outlined),
+    RoadsideScreen(),
     ProfileTab(),
   ];
 

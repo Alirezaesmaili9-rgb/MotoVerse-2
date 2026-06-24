@@ -16,6 +16,9 @@ import '../../features/copilot/presentation/screens/copilot_screen.dart';
 import '../../features/insurance/presentation/screens/insurance_screen.dart';
 import '../../features/insurance/presentation/screens/policies_screen.dart';
 import '../../features/marketplace/presentation/screens/product_detail_screen.dart';
+import '../../features/roadside/presentation/screens/roadside_history_screen.dart';
+import '../../features/roadside/presentation/screens/roadside_screen.dart';
+import '../../features/roadside/presentation/screens/roadside_tracking_screen.dart';
 import '../../features/service_centers/presentation/screens/bookings_screen.dart';
 import '../../features/service_centers/presentation/screens/service_centers_screen.dart';
 import '../../features/tools/domain/entities/embedded_tool.dart';
@@ -122,6 +125,21 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.bookings,
         builder: (_, __) => const BookingsScreen(),
+      ),
+
+      // Roadside assistance
+      GoRoute(
+        path: AppRoutes.roadside,
+        builder: (_, __) => const RoadsideScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.roadsideTracking,
+        builder: (_, state) =>
+            RoadsideTrackingScreen(requestId: state.extra! as String),
+      ),
+      GoRoute(
+        path: AppRoutes.roadsideHistory,
+        builder: (_, __) => const RoadsideHistoryScreen(),
       ),
 
       // Wallet
