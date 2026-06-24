@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../app/router/routes.dart';
+import '../../../../core/theme/app_colors.dart';
 import '../../../garage/presentation/screens/garage_screen.dart';
 import '../../../marketplace/presentation/screens/marketplace_screen.dart';
 import '../widgets/placeholder_tab.dart';
@@ -31,6 +34,12 @@ class _HomeShellState extends ConsumerState<HomeShell> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: IndexedStack(index: _index, children: _tabs),
+      // AI Copilot is reachable from every primary tab.
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.push(AppRoutes.copilot),
+        backgroundColor: AppColors.primary,
+        child: const Icon(Icons.auto_awesome, color: Colors.white),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _index,
         onTap: (i) => setState(() => _index = i),

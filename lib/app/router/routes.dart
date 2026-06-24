@@ -21,6 +21,9 @@ class AppRoutes {
   static const String tools = '/tools';
   static const String toolView = '/tools/view';
 
+  // AI Copilot (globally accessible)
+  static const String copilot = '/copilot';
+
   // Wallet
   static const String wallet = '/wallet';
   static const String walletRecharge = '/wallet/recharge';

@@ -76,6 +76,7 @@ lib/
    ├─ marketplace/ { domain · data · presentation }   ← parts/accessories, cart, orders
    ├─ wallet/      { domain · data · presentation }   ← balance, recharge, payments
    ├─ tools/       { domain · data · presentation }   ← MotoFix/MotoSanj/MotoType WebView
+   ├─ copilot/     { domain · data · presentation }   ← AI chat (provider-agnostic)
    └─ home/        { presentation }                   ← command center + shell
 ```
 
@@ -125,7 +126,21 @@ dummy placeholders), `MvCard`, `PrimaryButton`.
    gateway** abstraction (sandbox impl), 2% cashback, wallet-funded checkout
 ✅ **Intelligent tools** — MotoFix / MotoSanj / MotoType embedded **unmodified**
    via WebView, with a JS bridge to the app's data (see below)
+✅ **AI Copilot** — globally accessible streaming chat behind a
+   **provider-agnostic `AiProvider`** abstraction (offline mock for now),
+   grounded in the rider's bike + maintenance state
 ✅ Supabase schema for **every** module + Row Level Security + seed data
+
+### AI Copilot (provider-agnostic)
+
+Like the payment layer, the Copilot depends only on the `AiProvider` interface
+(`features/copilot/domain/services/ai_provider.dart`). The current binding is an
+offline `MockAiProvider` that streams domain-aware Persian answers. Swap in
+Claude / OpenAI / a self-hosted model by implementing `AiProvider` and
+overriding `aiProviderProvider` — the chat UI and controller are unchanged.
+Answers are grounded via `CopilotContext`, derived from the user's primary
+motorcycle and next-service status. Reachable from every primary tab via the
+✨ FAB.
 
 ### Embedded tools bridge (MotoFix / MotoSanj / MotoType)
 
@@ -164,7 +179,6 @@ while still wiring the tools to real app data.
 These modules have backend tables + RLS ready; the Flutter slices follow the
 exact `domain/data/presentation` pattern above:
 
-- AI Copilot **(next up)**
 - MotoBimeh (insurance) · Roadside Assistance (live tracking)
 - Service Centers (map + booking) · Motor World (news)
 - Admin dashboard · FCM notifications · Analytics
