@@ -12,8 +12,10 @@ import '../../features/admin/presentation/screens/admin_users_screen.dart';
 import '../../features/auth/presentation/providers/auth_providers.dart';
 import '../../features/auth/presentation/screens/otp_screen.dart';
 import '../../features/auth/presentation/screens/phone_login_screen.dart';
+import '../../features/garage/domain/entities/motorcycle.dart';
 import '../../features/garage/presentation/screens/garage_screen.dart';
 import '../../features/home/presentation/screens/home_shell.dart';
+import '../../features/maintenance/presentation/screens/maintenance_screen.dart';
 import '../../features/marketplace/presentation/screens/cart_screen.dart';
 import '../../features/marketplace/presentation/screens/checkout_screen.dart';
 import '../../features/marketplace/presentation/screens/favorites_screen.dart';
@@ -77,6 +79,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.garage,
         builder: (_, __) => const GarageScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.maintenance,
+        builder: (_, state) =>
+            MaintenanceScreen(motorcycle: state.extra! as Motorcycle),
       ),
 
       // Marketplace

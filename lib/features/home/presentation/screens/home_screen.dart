@@ -49,7 +49,12 @@ class HomeScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 12),
               if (nextMaintenance != null)
-                _MaintenanceReminder(status: nextMaintenance),
+                _MaintenanceReminder(
+                  status: nextMaintenance,
+                  onTap: bike == null
+                      ? null
+                      : () => context.push(AppRoutes.maintenance, extra: bike),
+                ),
               const SizedBox(height: 20),
               Text('دسترسی سریع',
                   style: Theme.of(context).textTheme.titleMedium),
@@ -187,8 +192,9 @@ class _BikeCard extends StatelessWidget {
 }
 
 class _MaintenanceReminder extends StatelessWidget {
-  const _MaintenanceReminder({required this.status});
+  const _MaintenanceReminder({required this.status, this.onTap});
   final MaintenanceStatus status;
+  final VoidCallback? onTap;
 
   Color get _accent => switch (status.urgency) {
         MaintenanceUrgency.ok => AppColors.success,
@@ -199,6 +205,7 @@ class _MaintenanceReminder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MvCard(
+      onTap: onTap,
       child: Row(
         children: [
           Container(

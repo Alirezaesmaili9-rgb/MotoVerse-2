@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../app/router/routes.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/persian_utils.dart';
 import '../../../../core/widgets/iranian_plate.dart';
@@ -36,6 +38,8 @@ class GarageScreen extends ConsumerWidget {
             itemBuilder: (_, i) => _MotorcycleTile(
               bike: bikes[i],
               onEdit: () => _openForm(context, bikes[i]),
+              onMaintenance: () =>
+                  context.push(AppRoutes.maintenance, extra: bikes[i]),
             ),
           );
         },
@@ -54,14 +58,19 @@ class GarageScreen extends ConsumerWidget {
 }
 
 class _MotorcycleTile extends StatelessWidget {
-  const _MotorcycleTile({required this.bike, required this.onEdit});
+  const _MotorcycleTile({
+    required this.bike,
+    required this.onEdit,
+    required this.onMaintenance,
+  });
   final Motorcycle bike;
   final VoidCallback onEdit;
+  final VoidCallback onMaintenance;
 
   @override
   Widget build(BuildContext context) {
     return MvCard(
-      onTap: onEdit,
+      onTap: onMaintenance,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -87,6 +96,12 @@ class _MotorcycleTile extends StatelessWidget {
                           fontSize: 11,
                           fontWeight: FontWeight.w700)),
                 ),
+              IconButton(
+                visualDensity: VisualDensity.compact,
+                icon: const Icon(Icons.edit_outlined,
+                    size: 18, color: AppColors.textMuted),
+                onPressed: onEdit,
+              ),
             ],
           ),
           const SizedBox(height: 12),
@@ -100,6 +115,22 @@ class _MotorcycleTile extends StatelessWidget {
               const Spacer(),
               Text(PersianUtils.formatKm(bike.mileage),
                   style: Theme.of(context).textTheme.bodySmall),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              const Icon(Icons.build_circle_outlined,
+                  size: 16, color: AppColors.primary),
+              const SizedBox(width: 6),
+              Text('سرویس و نگهداری',
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelMedium
+                      ?.copyWith(color: AppColors.primary)),
+              const Spacer(),
+              const Icon(Icons.chevron_left,
+                  size: 18, color: AppColors.textMuted),
             ],
           ),
         ],

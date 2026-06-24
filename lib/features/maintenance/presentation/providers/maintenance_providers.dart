@@ -12,6 +12,35 @@ final maintenanceRepositoryProvider = Provider<MaintenanceRepository>((ref) {
   return MaintenanceRepositoryImpl(ref.watch(supabaseClientProvider));
 });
 
+/// Add / delete maintenance records and keep the motorcycle's odometer in sync.
+final maintenanceActionsProvider = Provider((ref) => MaintenanceActions(ref));
+
+class MaintenanceActions {
+  MaintenanceActions(this.ref);
+  final Ref ref;
+
+  /// Logs a record; if [newMileage] exceeds the bike's reading, the odometer
+  /// is bumped so future "service due in X km" calculations stay accurate.
+  Future<String?> addRecord(MaintenanceRecord record, {int? newMileage}) async {
+    final res = await ref.read(maintenanceRepositoryProvider).addRecord(record);
+    return res.fold((f) => f.message, (_) {
+      if (newMileage != null && newMileage > 0) {
+        ref
+            .read(garageRepositoryProvider)
+            .updateMileage(record.motorcycleId, newMileage);
+        ref.invalidate(motorcyclesProvider);
+      }
+      ref.invalidate(maintenanceRecordsProvider(record.motorcycleId));
+      return null;
+    });
+  }
+
+  Future<void> deleteRecord(String id, String motorcycleId) async {
+    await ref.read(maintenanceRepositoryProvider).deleteRecord(id);
+    ref.invalidate(maintenanceRecordsProvider(motorcycleId));
+  }
+}
+
 /// Maintenance records for a given motorcycle.
 final maintenanceRecordsProvider = FutureProvider.family<
     List<MaintenanceRecord>, String>((ref, motorcycleId) async {
