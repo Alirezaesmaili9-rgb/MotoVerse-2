@@ -17,6 +17,10 @@ class AppRoutes {
   static const String checkout = '/checkout';
   static const String orders = '/orders';
 
+  // Intelligent tools (embedded HTML via WebView)
+  static const String tools = '/tools';
+  static const String toolView = '/tools/view';
+
   // Wallet
   static const String wallet = '/wallet';
   static const String walletRecharge = '/wallet/recharge';

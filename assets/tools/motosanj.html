@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>موتوسنج | ارزیاب قیمت موتورسیکلت کارکرده — بازرگانی اسماعیلی</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.31.0/dist/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* ===== همان تم رنگی اصلی ===== */
+    --brand:        #3853ea;
+    --brand-2:      #5b73f0;
+    --brand-dark:   #121B60;
+    --brand-deeper: #080E28;
+    --bg-light:     #F2F7FA;
+    --bg-mid:       #e8edf3;
+    --bg-soft:      #fbfcfe;
+
+    /* طیف بازه (کم/منصفانه/زیاد) */
+    --low:  #fca5a5;
+    --mid:  #a5b4fc;
+    --high: #86efac;
+
+    --ink:    #0e1430;
+    --muted:  #5b6580;
+    --faint:  #8b93ad;
+    --line:   rgba(18,27,96,.09);
+    --line-2: rgba(18,27,96,.06);
+
+    --radius-xl: 26px;
+    --radius-lg: 20px;
+    --radius:    15px;
+    --radius-sm: 11px;
+
+    --shadow-sm: 0 1px 2px rgba(18,27,96,.05);
+    --shadow:    0 1px 2px rgba(18,27,96,.04), 0 18px 40px -22px rgba(18,27,96,.28);
+    --shadow-lg: 0 2px 4px rgba(18,27,96,.05), 0 40px 80px -34px rgba(8,14,40,.55);
+
+    --ease: cubic-bezier(.22,1,.36,1);
+    --ease-spring: cubic-bezier(.34,1.56,.64,1);
+  }
+
+  html { -webkit-text-size-adjust: 100%; }
+  body { font-family: 'Vazirmatn', system-ui, sans-serif; }
+
+  .estimator {
+    direction: rtl;
+    min-height: 100vh;
+    color: var(--ink);
+    background:
+      radial-gradient(1100px 520px at 88% -8%, rgba(56,83,234,.07), transparent 60%),
+      radial-gradient(900px 480px at 6% 4%, rgba(18,27,96,.05), transparent 55%),
+      linear-gradient(180deg, var(--bg-soft), var(--bg-light) 38%);
+    font-feature-settings: "ss01";
+  }
+  .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+
+  /* ============================================================
+     HEADER — translucent, sticky, blurred (Apple-style chrome)
+     ============================================================ */
+  .header {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(8,14,40,.72);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    backdrop-filter: saturate(180%) blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: .85rem clamp(1.1rem, 4vw, 3rem);
+  }
+  .header-brand { display: flex; align-items: center; gap: .85rem; }
+  .header-brand img { height: 34px; width: auto; filter: brightness(0) invert(1); }
+  .header-brand .divider { width: 1px; height: 22px; background: rgba(255,255,255,.16); }
+  .header-brand .wordmark { color: #fff; font-size: 15px; font-weight: 700; letter-spacing: .5px; }
+  .header-tag { color: rgba(255,255,255,.55); font-size: 12px; font-weight: 400; }
+  @media (max-width: 620px){ .header-tag { display: none; } }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    position: relative; overflow: hidden;
+    color: #fff;
+    padding: clamp(3rem, 7vw, 5rem) clamp(1.1rem, 4vw, 3rem) clamp(5rem, 9vw, 7rem);
+    background:
+      radial-gradient(120% 120% at 82% -20%, #1c2a8a 0%, transparent 55%),
+      linear-gradient(165deg, var(--brand-dark) 0%, var(--brand-deeper) 78%);
+  }
+  .hero::before {
+    content: ""; position: absolute; pointer-events: none; z-index: 0;
+    width: 520px; height: 520px; top: -240px; left: 50%; transform: translateX(-30%);
+    background: radial-gradient(circle, rgba(56,83,234,.55), transparent 68%);
+    filter: blur(40px); animation: heroGlow 16s ease-in-out infinite;
+  }
+  @keyframes heroGlow { 0%,100%{ transform: translateX(-30%) scale(1);} 50%{ transform: translateX(-18%) scale(1.12);} }
+  .hero-grid {
+    content:""; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.5;
+    background-image:
+      linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 46px 46px;
+    -webkit-mask-image: radial-gradient(120% 90% at 70% 0%, #000 35%, transparent 75%);
+            mask-image: radial-gradient(120% 90% at 70% 0%, #000 35%, transparent 75%);
+  }
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 1180px; margin: 0 auto;
+    display: flex; align-items: center; gap: 2.5rem;
+  }
+  .hero-text { flex: 1; min-width: 0; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(165,180,252,.14); border: 1px solid rgba(165,180,252,.32);
+    border-radius: 100px; padding: 6px 14px;
+    font-size: 12.5px; color: #c7d0fb; font-weight: 500; margin-bottom: 1.25rem;
+  }
+  .hero-badge i { font-size: 13px; }
+  .hero h1 {
+    font-size: clamp(28px, 4.6vw, 46px); font-weight: 800; line-height: 1.18;
+    letter-spacing: -.02em; margin-bottom: .9rem;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(90deg, #fff, #c7d0fb);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero h1 .sub { display: block; font-size: .46em; font-weight: 500; opacity: .62; letter-spacing: 0; margin-top: .5rem; }
+  .hero p { font-size: clamp(14px, 1.5vw, 16px); line-height: 1.95; color: rgba(255,255,255,.66); max-width: 560px; }
+
+  .hero-emblem {
+    position: relative; flex-shrink: 0;
+    width: 168px; height: 168px; border-radius: 38px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(160deg, rgba(255,255,255,.14), rgba(255,255,255,.03));
+    border: 1px solid rgba(255,255,255,.16);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.18), 0 30px 60px -28px rgba(0,0,0,.7);
+    animation: floatY 5s ease-in-out infinite;
+  }
+  .hero-emblem i { font-size: 78px; color: #fff; }
+  .hero-emblem::after {
+    content: ""; position: absolute; inset: -1px; border-radius: 38px;
+    background: radial-gradient(circle at 30% 20%, rgba(165,180,252,.5), transparent 60%);
+    opacity: .6; pointer-events: none;
+  }
+  @keyframes floatY { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-12px);} }
+  @media (max-width: 880px){ .hero-emblem { display: none; } }
+
+  /* ============================================================
+     MAIN
+     ============================================================ */
+  .main-wrap { max-width: 1180px; margin: -3.25rem auto 3rem; padding: 0 clamp(1.1rem, 4vw, 2rem); position: relative; z-index: 10; }
+
+  /* ----- intro band ----- */
+  .intro-band {
+    background: rgba(255,255,255,.86);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border: 1px solid var(--line); border-radius: var(--radius-lg);
+    box-shadow: var(--shadow); padding: 1.6rem 1.75rem; margin-bottom: 1.25rem;
+  }
+  .intro-head { display: flex; align-items: center; gap: 9px; font-size: 15px; font-weight: 700; color: var(--brand-dark); margin-bottom: 1.1rem; }
+  .intro-head i { color: var(--brand); font-size: 19px; }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .intro-item { display: flex; gap: 13px; align-items: flex-start; background: var(--bg-light); border: 1px solid var(--line-2); border-radius: var(--radius); padding: 15px 17px; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+  .intro-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+  .intro-item .ii-icon { width: 40px; height: 40px; flex-shrink: 0; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+  .intro-item.sell .ii-icon { background: rgba(56,83,234,.12); color: var(--brand); }
+  .intro-item.buy  .ii-icon { background: rgba(22,163,74,.12); color: #16a34a; }
+  .intro-item h3 { font-size: 13.5px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+  .intro-item p { font-size: 12.5px; color: var(--muted); line-height: 1.85; }
+  .intro-note { display: flex; align-items: center; gap: 8px; margin-top: 1rem; font-size: 12.5px; color: var(--muted); background: rgba(165,180,252,.13); border-radius: var(--radius-sm); padding: 11px 15px; }
+  .intro-note i { color: var(--brand); flex-shrink: 0; }
+
+  /* ----- layout ----- */
+  .layout { display: grid; grid-template-columns: 1fr 420px; gap: 1.25rem; align-items: start; }
+  .left-col { display: flex; flex-direction: column; gap: 1.1rem; }
+  .right-col { position: sticky; top: 5.5rem; }
+
+  /* ----- form cards ----- */
+  .card { background: #fff; border-radius: var(--radius-lg); border: 1px solid var(--line); box-shadow: var(--shadow); padding: 1.6rem 1.65rem; transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease); }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: rgba(56,83,234,.18); }
+  .card-title { display: flex; align-items: center; gap: 11px; font-size: 15px; font-weight: 700; color: var(--brand-dark); margin-bottom: 1.35rem; }
+  .step-badge {
+    width: 30px; height: 30px; flex-shrink: 0;
+    background: linear-gradient(150deg, var(--brand), var(--brand-dark));
+    color: #fff; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    box-shadow: 0 5px 14px -6px var(--brand);
+  }
+  .card-title .step-of { font-size: 11px; font-weight: 500; color: var(--faint); margin-right: auto; letter-spacing: .3px; }
+
+  label.field-label { display: block; font-size: 12.5px; color: var(--muted); margin-bottom: 7px; font-weight: 500; }
+  label.field-label .req { color: #e11d48; }
+
+  select, input[type="number"] {
+    width: 100%; height: 46px;
+    border: 1.5px solid var(--bg-mid); border-radius: var(--radius-sm);
+    padding: 0 14px; font-family: inherit; font-size: 14px; color: var(--ink);
+    background: var(--bg-light); outline: none; direction: rtl;
+    transition: border-color .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease);
+    appearance: none; -webkit-appearance: none;
+    font-variant-numeric: tabular-nums;
+  }
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%233853ea' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: left 14px center; padding-left: 36px;
+  }
+  select:focus, input[type="number"]:focus { border-color: var(--brand); background: #fff; box-shadow: 0 0 0 4px rgba(56,83,234,.13); }
+  select:hover, input[type="number"]:hover { border-color: rgba(56,83,234,.35); }
+  input[type="number"]::placeholder { color: #b3b9c9; }
+  input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; }
+
+  .hint { font-size: 11.5px; color: var(--brand); margin-top: 6px; min-height: 16px; line-height: 1.5; }
+  .hint.success { color: #16a34a; }
+  .hint.error { color: #e11d48; font-weight: 600; }
+  select.invalid, input.invalid { border-color: #e11d48 !important; background: #fef2f4 !important; }
+  .shake { animation: shakeX .4s cubic-bezier(.36,.07,.19,.97) both; }
+  @keyframes shakeX { 10%,90%{transform:translateX(-1px);} 20%,80%{transform:translateX(2px);} 30%,50%,70%{transform:translateX(-4px);} 40%,60%{transform:translateX(4px);} }
+
+  .cb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+  .checkbox-row { display: flex; align-items: flex-start; gap: 11px; padding: 13px 15px; border-radius: var(--radius-sm); border: 1.5px solid var(--bg-mid); cursor: pointer; transition: border-color .2s var(--ease), background .2s var(--ease), transform .12s var(--ease); }
+  .checkbox-row:hover { border-color: rgba(56,83,234,.4); background: #f6f8ff; }
+  .checkbox-row:active { transform: scale(.99); }
+  .checkbox-row.checked { border-color: var(--brand); background: #eef1ff; }
+  .checkbox-row input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--brand); cursor: pointer; flex-shrink: 0; margin-top: 1px; }
+  .checkbox-row label { font-size: 13.5px; color: var(--ink); cursor: pointer; flex: 1; user-select: none; font-weight: 500; }
+  .cb-desc { font-size: 11px; color: var(--faint); margin-top: 3px; font-weight: 400; }
+
+  /* ----- buttons ----- */
+  .calc-btn {
+    position: relative; overflow: hidden;
+    width: 100%; height: 54px;
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+    color: #fff; border: none; border-radius: var(--radius);
+    font-family: inherit; font-size: 15.5px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 9px;
+    box-shadow: 0 12px 26px -12px var(--brand);
+    transition: transform .12s var(--ease), box-shadow .25s var(--ease), filter .2s var(--ease);
+  }
+  .calc-btn:hover { filter: brightness(1.06); box-shadow: 0 16px 32px -12px var(--brand); }
+  .calc-btn:active { transform: scale(.985); }
+  .calc-btn .spinner { width: 18px; height: 18px; border: 2.5px solid rgba(255,255,255,.35); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; display: none; }
+  .calc-btn.loading { pointer-events: none; }
+  .calc-btn.loading .spinner { display: inline-block; }
+  .calc-btn.loading .btn-icon { display: none; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .ripple { position: absolute; border-radius: 50%; transform: scale(0); background: rgba(255,255,255,.4); pointer-events: none; animation: rippleAnim .6s ease-out; }
+  @keyframes rippleAnim { to { transform: scale(2.6); opacity: 0; } }
+
+  .reset-btn { width: 100%; height: 44px; margin-top: 11px; background: #fff; color: var(--brand); border: 1.5px solid rgba(56,83,234,.3); border-radius: var(--radius-sm); font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; display: none; transition: background .2s var(--ease), border-color .2s; }
+  .reset-btn.visible { display: flex; align-items: center; justify-content: center; gap: 7px; }
+  .reset-btn:hover { background: #f3f5ff; border-color: var(--brand); }
+
+  /* ============================================================
+     RESULT MODULE — the signature
+     ============================================================ */
+  .empty-result {
+    background: #fff; border-radius: var(--radius-lg); border: 1px dashed rgba(56,83,234,.22);
+    box-shadow: var(--shadow); padding: 3rem 1.75rem; text-align: center; color: var(--faint);
+  }
+  .empty-result .ic { width: 64px; height: 64px; margin: 0 auto 1.1rem; border-radius: 20px; background: linear-gradient(160deg, var(--bg-light), #fff); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; }
+  .empty-result .ic i { font-size: 30px; color: var(--brand); opacity: .7; }
+  .empty-result h3 { font-size: 14.5px; color: var(--ink); font-weight: 700; margin-bottom: 8px; }
+  .empty-result p { font-size: 12.5px; line-height: 1.85; max-width: 280px; margin: 0 auto; }
+
+  .result-card {
+    position: relative; overflow: hidden; display: none;
+    border-radius: var(--radius-xl);
+    padding: 1.75rem 1.6rem 1.6rem;
+    color: #fff;
+    background:
+      radial-gradient(120% 80% at 50% -10%, rgba(56,83,234,.4), transparent 60%),
+      linear-gradient(165deg, var(--brand-dark) 0%, var(--brand-deeper) 90%);
+    border: 1px solid rgba(255,255,255,.1);
+    box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.1);
+  }
+  .result-card.visible { display: block; }
+  .result-card::before {
+    content: ""; position: absolute; top: -1px; left: 12%; right: 12%; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(165,180,252,.7), transparent);
+  }
+  .res-eyebrow { font-size: 11px; letter-spacing: 1.5px; color: #9aa6e8; text-transform: uppercase; font-weight: 600; }
+  .res-name { font-size: 16px; font-weight: 700; margin-top: 5px; line-height: 1.5; }
+
+  /* ---- GAUGE ---- */
+  .gauge-wrap { position: relative; width: 256px; max-width: 78%; margin: 1.1rem auto .5rem; aspect-ratio: 1; }
+  .gauge-wrap svg { width: 100%; height: 100%; display: block; overflow: visible; }
+  .gauge-track { fill: none; stroke: rgba(255,255,255,.08); stroke-width: 15; stroke-linecap: round; }
+  .gauge-value { fill: none; stroke: url(#gaugeGrad); stroke-width: 15; stroke-linecap: round; filter: drop-shadow(0 0 8px rgba(165,180,252,.35)); }
+  .gauge-marker { fill: #fff; filter: drop-shadow(0 2px 5px rgba(0,0,0,.5)); }
+  .gauge-center {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center; padding: 0 12%;
+  }
+  .gauge-cap { font-size: 11px; color: #9aa6e8; letter-spacing: .5px; margin-bottom: 4px; }
+  .gauge-big { font-size: clamp(26px, 5.6vw, 34px); font-weight: 800; line-height: 1.05; letter-spacing: -.02em; color: #fff; }
+  .gauge-unit { font-size: .46em; font-weight: 600; color: #c7d0fb; margin-right: 4px; }
+  .gauge-exact { font-size: 12px; color: rgba(255,255,255,.62); margin-top: 6px; direction: rtl; }
+  .gauge-retention {
+    display: inline-flex; align-items: center; gap: 5px; margin-top: 10px;
+    font-size: 11.5px; font-weight: 600; color: #c7d0fb;
+    background: rgba(165,180,252,.16); border: 1px solid rgba(165,180,252,.28);
+    border-radius: 100px; padding: 4px 11px;
+  }
+
+  /* ---- range spectrum ---- */
+  .range-block { margin-top: .35rem; }
+  .range-chips { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 9px; }
+  .chip { border-radius: 14px; padding: 11px 8px 12px; text-align: center; border: 1px solid; }
+  .chip .c-label { font-size: 10.5px; opacity: .72; margin-bottom: 5px; }
+  .chip .c-val { font-size: 14px; font-weight: 700; direction: rtl; line-height: 1.25; }
+  .chip.low  { background: rgba(252,165,165,.12); border-color: rgba(252,165,165,.3); }
+  .chip.mid  { background: rgba(165,180,252,.18); border-color: rgba(165,180,252,.42); transform: translateY(-2px); }
+  .chip.high { background: rgba(134,239,172,.12); border-color: rgba(134,239,172,.3); }
+  .chip.low  .c-val { color: var(--low); }
+  .chip.mid  .c-val { color: #c7d0fb; }
+  .chip.high .c-val { color: var(--high); }
+
+  .spectrum { position: relative; height: 6px; margin: 14px 4px 4px; border-radius: 6px; background: linear-gradient(90deg, var(--low), var(--mid) 50%, var(--high)); opacity: .85; }
+  .spectrum-dot { position: absolute; top: 50%; left: 50%; width: 14px; height: 14px; border-radius: 50%; background: #fff; border: 3px solid var(--mid); transform: translate(-50%,-50%); box-shadow: 0 0 0 4px rgba(165,180,252,.2); }
+  .spectrum-ends { display: flex; justify-content: space-between; margin-top: 7px; font-size: 10px; color: rgba(255,255,255,.45); }
+
+  /* ---- receipt breakdown ---- */
+  .breakdown { margin-top: 1.3rem; border-top: 1px solid rgba(255,255,255,.12); padding-top: 1.1rem; }
+  .bd-head { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: #9aa6e8; font-weight: 600; letter-spacing: .5px; margin-bottom: 12px; }
+  .bd-head i { font-size: 14px; }
+  .bd-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 12.5px; padding: 6px 0; }
+  .bd-row .bd-k { color: rgba(255,255,255,.82); }
+  .bd-row .bd-v { direction: ltr; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .bd-row.base { border-bottom: 1px dashed rgba(255,255,255,.12); padding-bottom: 11px; margin-bottom: 4px; }
+  .bd-row.base .bd-v { color: #fff; }
+  .bd-row.ded .bd-v { color: var(--low); }
+  .bd-row.ded .bd-k { color: rgba(255,255,255,.72); }
+  .bd-total { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-top: 8px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.2); }
+  .bd-total .bd-k { font-size: 14px; font-weight: 700; }
+  .bd-total .bd-v { font-size: 17px; font-weight: 800; color: #c7d0fb; direction: ltr; font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+
+  /* ---- pills ---- */
+  .summary-pills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 1.1rem; }
+  .pill { display: inline-flex; align-items: center; gap: 5px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 100px; padding: 5px 11px; font-size: 11px; color: rgba(255,255,255,.85); }
+
+  /* ---- actions ---- */
+  .result-actions { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 10px; }
+  .act-btn { height: 46px; border-radius: 13px; border: 1px solid rgba(165,180,252,.3); background: rgba(255,255,255,.07); color: #fff; font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background .2s var(--ease), transform .12s var(--ease), border-color .2s; }
+  .act-btn i { font-size: 17px; }
+  .act-btn:hover { background: rgba(255,255,255,.13); border-color: rgba(165,180,252,.5); }
+  .act-btn:active { transform: scale(.98); }
+  .act-btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); border-color: transparent; box-shadow: 0 12px 24px -14px var(--brand); }
+  .act-btn.primary:hover { filter: brightness(1.07); }
+  .act-row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .act-row3 .act-btn { height: 42px; font-size: 12.5px; }
+
+  .disclaimer { font-size: 11px; color: rgba(255,255,255,.45); text-align: center; margin-top: 1.25rem; line-height: 1.8; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1rem; }
+
+  /* ---- toast ---- */
+  .est-toast { position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--brand-deeper); color: #fff; padding: 13px 22px; border-radius: 13px; font-family: inherit; font-size: 13.5px; box-shadow: 0 16px 42px rgba(8,14,40,.45); opacity: 0; pointer-events: none; transition: opacity .3s var(--ease), transform .3s var(--ease); z-index: 9999; direction: rtl; border: 1px solid rgba(255,255,255,.1); }
+  .est-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ============================================================
+     GUIDE BAND
+     ============================================================ */
+  .guide-band { background: linear-gradient(180deg, rgba(18,27,96,.04), rgba(18,27,96,.015)); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 1.75rem; margin-top: 1.5rem; text-align: center; }
+  .guide-band .gb-icon { width: 50px; height: 50px; margin: 0 auto 1rem; border-radius: 16px; background: rgba(56,83,234,.1); display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--brand); }
+  .guide-band h3 { font-size: 15px; font-weight: 700; color: var(--brand-dark); margin-bottom: 9px; }
+  .guide-band p { font-size: 13px; color: var(--muted); line-height: 2.05; max-width: 700px; margin: 0 auto; }
+
+  /* ============================================================
+     ENTRANCE + REVEAL MOTION
+     ============================================================ */
+  @keyframes enterUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .header { animation: enterUp .5s var(--ease) backwards; }
+  .hero-badge { animation: enterUp .6s .05s var(--ease) backwards; }
+  .hero h1 { animation: enterUp .6s .13s var(--ease) backwards; }
+  .hero p { animation: enterUp .6s .22s var(--ease) backwards; }
+  .hero-emblem { animation: floatY 5s ease-in-out infinite, enterUp .7s .1s var(--ease) backwards; }
+  .intro-band { animation: enterUp .6s .26s var(--ease) backwards; }
+  .left-col > .card { animation: enterUp .6s var(--ease) backwards; }
+  .left-col > .card:nth-child(1){ animation-delay: .3s; }
+  .left-col > .card:nth-child(2){ animation-delay: .38s; }
+  .left-col > .card:nth-child(3){ animation-delay: .46s; }
+  .left-col > .card:nth-child(4){ animation-delay: .54s; }
+  .left-col > .calc-btn { animation: enterUp .6s .62s var(--ease) backwards; }
+  .right-col > .empty-result { animation: enterUp .6s .42s var(--ease) backwards; }
+
+  @keyframes cardIn { 0% { opacity: 0; transform: translateY(26px) scale(.98); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes popIn { 0% { opacity: 0; transform: scale(.8) translateY(-2px); } 70% { transform: scale(1.04); } 100% { opacity: 1; transform: scale(1); } }
+  .chip.mid.pop { animation: popIn .5s var(--ease-spring) both; }
+
+  .result-card.revealing { animation: cardIn .6s var(--ease) both; }
+  .result-card.revealing .res-eyebrow   { animation: fadeUp .4s .08s both; }
+  .result-card.revealing .res-name       { animation: fadeUp .4s .14s both; }
+  .result-card.revealing .gauge-wrap     { animation: fadeUp .5s .2s both; }
+  .result-card.revealing .range-chips .chip.low  { animation: popIn .45s .5s both; }
+  .result-card.revealing .range-chips .chip.mid  { animation: popIn .45s .6s both; }
+  .result-card.revealing .range-chips .chip.high { animation: popIn .45s .7s both; }
+  .result-card.revealing .spectrum       { animation: fadeUp .45s .78s both; }
+  .result-card.revealing .breakdown      { animation: fadeUp .45s .86s both; }
+  .result-card.revealing .summary-pills  { animation: fadeUp .4s .96s both; }
+  .result-card.revealing .result-actions { animation: fadeUp .45s 1.02s both; }
+  .result-card.revealing .disclaimer     { animation: fadeUp .4s 1.08s both; }
+
+  .bd-row.counting .bd-v, .bd-total.counting .bd-v { animation: fadeUp .35s both; }
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .gauge-big.shine {
+      background: linear-gradient(90deg, #fff 30%, #c7d0fb 50%, #fff 70%);
+      background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+      animation: heroShine 1.8s linear 1;
+    }
+    .gauge-big.shine .gauge-unit { -webkit-text-fill-color: #c7d0fb; }
+  }
+  @keyframes heroShine { 0% { background-position: 160% center; } 100% { background-position: -60% center; } }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 940px){
+    .layout { grid-template-columns: 1fr; }
+    .right-col { position: static; }
+  }
+  @media (max-width: 600px){
+    .intro-grid { grid-template-columns: 1fr; }
+    .grid3 { grid-template-columns: 1fr; }
+    .cb-grid { grid-template-columns: 1fr; }
+    .main-wrap { margin-top: -2.5rem; }
+    .gauge-wrap { max-width: 70%; }
+  }
+  @media (max-width: 420px){
+    .grid2 { grid-template-columns: 1fr; }
+    .range-chips { grid-template-columns: 1fr; gap: 7px; }
+    .chip.mid { transform: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .hero::before, .hero-emblem { animation: none !important; }
+    .gauge-big.shine { -webkit-text-fill-color: #fff !important; background: none !important; }
+  }
+</style>
+</head>
+
+<body>
+<div class="estimator">
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-brand">
+      <img src="data:image/webp;base64,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" alt="بازرگانی اسماعیلی">
+      <span class="divider"></span>
+      <span class="wordmark">موتوسنج</span>
+    </div>
+    <span class="header-tag">سامانهٔ ارزیابی قیمت موتورسیکلت کارکرده</span>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <span class="hero-badge"><i class="ti ti-calculator" aria-hidden="true"></i> ابزار راهنمای قیمت‌گذاری</span>
+        <h1>
+          <span class="accent">قیمت منصفانهٔ موتورت را بشناس</span>
+          <span class="sub">ارزیابی قیمت موتورسیکلت کارکرده، بر پایهٔ نرخ روز بازار</span>
+        </h1>
+        <p>چه می‌خواهید بفروشید و چه قصد خرید دارید، موتوسنج با چند مشخصهٔ ساده یک بازهٔ قیمتی شفاف به شما می‌دهد: حد پایین برای فروش سریع، قیمت منصفانه برای معاملهٔ درست، و حد بالا برای بازار خوب.</p>
+      </div>
+      <div class="hero-emblem"><i class="ti ti-motorbike" aria-hidden="true"></i></div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-wrap">
+
+    <div class="intro-band">
+      <div class="intro-head"><i class="ti ti-bulb" aria-hidden="true"></i> این سامانه چه کمکی به شما می‌کند؟</div>
+      <div class="intro-grid">
+        <div class="intro-item sell">
+          <div class="ii-icon"><i class="ti ti-tag" aria-hidden="true"></i></div>
+          <div>
+            <h3>می‌خواهید موتورتان را بفروشید؟</h3>
+            <p>قیمتی منصفانه و نزدیک به نرخ واقعی بازار تعیین کنید؛ نه آن‌قدر بالا که فروش طول بکشد، نه آن‌قدر پایین که ضرر کنید.</p>
+          </div>
+        </div>
+        <div class="intro-item buy">
+          <div class="ii-icon"><i class="ti ti-shopping-cart" aria-hidden="true"></i></div>
+          <div>
+            <h3>قصد خرید موتور کارکرده دارید؟</h3>
+            <p>قیمت منصفانهٔ موتور موردنظر را بر اساس مدل، سال، کارکرد و وضعیت آن برآورد کنید تا آگاهانه‌تر تصمیم بگیرید و بهتر چانه بزنید.</p>
+          </div>
+        </div>
+      </div>
+      <div class="intro-note"><i class="ti ti-info-circle" aria-hidden="true"></i> در چند گام ساده مشخصات موتورسیکلت را وارد کنید تا یک بازهٔ قیمتی راهنما به‌دست آورید.</div>
+    </div>
+
+    <div class="layout">
+      <!-- ===== FORM ===== -->
+      <div class="left-col">
+
+        <div class="card">
+          <div class="card-title"><span class="step-badge">۱</span> انتخاب موتورسیکلت و قیمت پایه <span class="step-of">گام ۱ از ۴</span></div>
+          <div class="grid3">
+            <div>
+              <label class="field-label">برند</label>
+              <select id="brand">
+                <option value="">انتخاب برند</option>
+                <option value="yamaha">یاماها (Yamaha)</option>
+                <option value="benelli">بنلی (Benelli)</option>
+                <option value="sym">گلکسی SYM (Galaxy SYM)</option>
+                <option value="tvs">تی وی اس (TVS)</option>
+                <option value="honda">هوندا (Honda)</option>
+                <option value="behpar">به‌پر (Behpar)</option>
+                <option value="erfan">عرفان سیکلت (Erfan)</option>
+                <option value="italmoto">ایتال موتو (Italmoto)</option>
+                <option value="keeway">کی‌وی (Keeway)</option>
+                <option value="daichi">دایچی (Daichi)</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label">مدل</label>
+              <select id="model"><option value="">ابتدا برند را انتخاب کنید</option></select>
+            </div>
+            <div>
+              <label class="field-label">قیمت پایه مدل صفر (تومان) <span class="req">*</span></label>
+              <input type="number" id="base-price" placeholder="مثال: ۵۰۰٬۰۰۰٬۰۰۰" />
+              <div class="hint" id="base-hint"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="step-badge">۲</span> سال مدل و کارکرد <span class="step-of">گام ۲ از ۴</span></div>
+          <div class="grid2">
+            <div>
+              <label class="field-label">سال مدل (شمسی) <span class="req">*</span></label>
+              <select id="year"><option value="">انتخاب سال</option></select>
+              <div class="hint" id="year-hint"></div>
+            </div>
+            <div>
+              <label class="field-label">کارکرد (کیلومتر)</label>
+              <input type="number" id="mileage" placeholder="مثال: ۱۵٬۰۰۰" min="0" />
+              <div class="hint" id="mileage-hint"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="step-badge">۳</span> وضعیت فنی و بدنه <span class="step-of">گام ۳ از ۴</span></div>
+          <div style="margin-bottom:1.1rem;">
+            <label class="field-label">وضعیت ظاهری بدنه</label>
+            <select id="cosmetic">
+              <option value="excellent">عالی و بدون خط و خش</option>
+              <option value="minor">خط و خش جزئی — ۲٪ کاهش</option>
+              <option value="medium">رنگ‌شدگی یا خوردگی متوسط — ۵٪ کاهش</option>
+              <option value="poor">بدنه نیازمند بازسازی — ۱۰٪ کاهش</option>
+            </select>
+          </div>
+          <div class="cb-grid">
+            <div class="checkbox-row" id="cb-repair">
+              <input type="checkbox" id="repair" />
+              <div>
+                <label for="repair">موتور تعمیری دارد</label>
+                <div class="cb-desc">سابقه تعمیرات اساسی — ۵٪ کاهش</div>
+              </div>
+              <i class="ti ti-tool" style="color:#e74c3c;font-size:18px;flex-shrink:0;" aria-hidden="true"></i>
+            </div>
+            <div class="checkbox-row" id="cb-accident">
+              <input type="checkbox" id="accident" />
+              <div>
+                <label for="accident">سابقه تصادف دارد</label>
+                <div class="cb-desc">آسیب بدنه یا شاسی — ۸٪ کاهش</div>
+              </div>
+              <i class="ti ti-alert-triangle" style="color:#f39c12;font-size:18px;flex-shrink:0;" aria-hidden="true"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><span class="step-badge">۴</span> وضعیت سند و پلاک <span class="step-of">گام ۴ از ۴</span></div>
+          <label class="field-label">مدارک و پلاک موتورسیکلت</label>
+          <select id="doc-status">
+            <option value="clean">پلاک‌دار با سند معتبر</option>
+            <option value="pending">پلاک‌دار، سند در دست اقدام — ۳٪ کاهش</option>
+            <option value="noplate">بدون پلاک / پلاک‌نشده — ۱۰٪ کاهش</option>
+            <option value="nodoc">فاقد سند یا مدارک ناقص — ۱۸٪ کاهش</option>
+          </select>
+          <div class="hint" id="doc-hint">وضعیت سند و پلاک تأثیر زیادی بر قیمت بازار دارد.</div>
+        </div>
+
+        <button class="calc-btn" id="calc-btn">
+          <span class="spinner" aria-hidden="true"></span>
+          <i class="ti ti-calculator btn-icon" aria-hidden="true"></i>
+          <span id="calc-btn-label">محاسبه بازه قیمتی</span>
+        </button>
+        <button class="reset-btn" id="reset-btn"><i class="ti ti-refresh" aria-hidden="true"></i> پاک کردن و محاسبه مجدد</button>
+      </div>
+
+      <!-- ===== RESULT ===== -->
+      <div class="right-col">
+
+        <div class="empty-result" id="empty-panel">
+          <div class="ic"><i class="ti ti-gauge" aria-hidden="true"></i></div>
+          <h3>نتیجه اینجا نمایش داده می‌شود</h3>
+          <p>پس از تکمیل فرم، قیمت کارشناسی به‌همراه بازهٔ حد پایین تا حد بالا برآورد می‌شود.</p>
+        </div>
+
+        <div class="result-card" id="result-card">
+          <div class="res-eyebrow">نتیجهٔ ارزیابی</div>
+          <div class="res-name" id="res-name">—</div>
+
+          <!-- ---- signature gauge ---- -->
+          <div class="gauge-wrap">
+            <svg viewBox="0 0 240 240" role="img" aria-label="قیمت کارشناسی">
+              <defs>
+                <linearGradient id="gaugeGrad" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%"  stop-color="#fca5a5"/>
+                  <stop offset="50%" stop-color="#a5b4fc"/>
+                  <stop offset="100%" stop-color="#86efac"/>
+                </linearGradient>
+              </defs>
+              <path id="gauge-track" class="gauge-track"></path>
+              <path id="gauge-value" class="gauge-value" pathLength="1" stroke-dasharray="0 1"></path>
+              <circle id="gauge-marker" class="gauge-marker" r="7" cx="120" cy="120"></circle>
+            </svg>
+            <div class="gauge-center">
+              <div class="gauge-cap">قیمت کارشناسی</div>
+              <div class="gauge-big num" id="gauge-big">—</div>
+              <div class="gauge-exact num" id="gauge-exact">—</div>
+              <div class="gauge-retention"><i class="ti ti-discount-check" style="font-size:13px;" aria-hidden="true"></i><span id="gauge-retention">—</span></div>
+            </div>
+          </div>
+
+          <!-- ---- range spectrum ---- -->
+          <div class="range-block">
+            <div class="range-chips">
+              <div class="chip low">
+                <div class="c-label">حد پایین</div>
+                <div class="c-val num" id="res-low">—</div>
+              </div>
+              <div class="chip mid">
+                <div class="c-label">منصفانه</div>
+                <div class="c-val num" id="res-mid">—</div>
+              </div>
+              <div class="chip high">
+                <div class="c-label">حد بالا</div>
+                <div class="c-val num" id="res-high">—</div>
+              </div>
+            </div>
+            <div class="spectrum"><div class="spectrum-dot"></div></div>
+            <div class="spectrum-ends"><span>فروش سریع</span><span>بازار خوب</span></div>
+          </div>
+
+          <!-- ---- receipt breakdown ---- -->
+          <div class="breakdown">
+            <div class="bd-head"><i class="ti ti-list-details" aria-hidden="true"></i> جزئیات محاسبه</div>
+            <div class="bd-row base"><span class="bd-k">قیمت پایه مدل صفر</span><span class="bd-v num" id="res-base">—</span></div>
+            <div class="bd-row ded" id="row-year" style="display:none;"><span class="bd-k" id="lbl-year">کاهش سال مدل</span><span class="bd-v num" id="res-year-ded">—</span></div>
+            <div class="bd-row ded" id="row-mileage" style="display:none;"><span class="bd-k" id="lbl-mileage">کاهش کارکرد</span><span class="bd-v num" id="res-mileage-ded">—</span></div>
+            <div class="bd-row ded" id="row-repair" style="display:none;"><span class="bd-k">کاهش تعمیرات (۵٪)</span><span class="bd-v num" id="res-repair-ded">—</span></div>
+            <div class="bd-row ded" id="row-accident" style="display:none;"><span class="bd-k" id="lbl-accident">کاهش تصادف (۸٪)</span><span class="bd-v num" id="res-accident-ded">—</span></div>
+            <div class="bd-row ded" id="row-cosmetic" style="display:none;"><span class="bd-k" id="lbl-cosmetic">کاهش وضعیت ظاهری</span><span class="bd-v num" id="res-cosmetic-ded">—</span></div>
+            <div class="bd-row ded" id="row-document" style="display:none;"><span class="bd-k" id="lbl-document">کاهش سند و پلاک</span><span class="bd-v num" id="res-document-ded">—</span></div>
+            <div class="bd-total"><span class="bd-k">قیمت کارشناسی</span><span class="bd-v num" id="res-total">—</span></div>
+          </div>
+
+          <div class="summary-pills" id="summary-pills"></div>
+
+          <div class="result-actions">
+            <button class="act-btn primary" id="btn-cert"><i class="ti ti-file-text" aria-hidden="true"></i> دریافت گواهی کارشناسی (PDF)</button>
+            <div class="act-row3">
+              <button class="act-btn" id="btn-whatsapp"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> واتساپ</button>
+              <button class="act-btn" id="btn-telegram"><i class="ti ti-brand-telegram" aria-hidden="true"></i> تلگرام</button>
+              <button class="act-btn" id="btn-copy"><i class="ti ti-copy" aria-hidden="true"></i> کپی</button>
+            </div>
+          </div>
+
+          <div class="disclaimer">
+            حد بالا و حد پایین، ±۵٪ نسبت به قیمت کارشناسی در نظر گرفته شده است.<br>
+            افت قیمت بر پایهٔ منحنی کاهنده (سن و کارکرد) و وضعیت فنی، بدنه و سند محاسبه می‌شود.<br>
+            قیمت نهایی پس از بازدید حضوری و بررسی کارشناسی تعیین می‌گردد.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="guide-band">
+      <div class="gb-icon"><i class="ti ti-compass" aria-hidden="true"></i></div>
+      <h3>این برآورد فقط نقش راهنما دارد</h3>
+      <p>قیمت‌های نمایش‌داده‌شده یک تخمین اولیه و راهنما هستند و جنبهٔ قطعی ندارند. ارزش واقعی هر موتورسیکلت به وضعیت فنی، اصالت قطعات، شرایط روز بازار و توافق طرفین بستگی دارد. برای تعیین قیمت دقیق، بازدید حضوری و بررسی کارشناسی ضروری است.</p>
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* =========================================================================
+   داده‌ها و موتور محاسبه — منطق دقیقاً مطابق نسخهٔ اصلی (بدون تغییر در فرمول)
+   ========================================================================= */
+const modelsData = {
+  yamaha: [
+    {name:'Yamaha NMAX 155',       price:265500000},
+    {name:'Yamaha NMAX 155 (پایه)',price:257500000},
+    {name:'Yamaha Aerox 155',      price:257500000},
+    {name:'Yamaha Qbix 125',       price:92700000},
+  ],
+  benelli: [
+    {name:'Benelli VZ 125',        price:98700000},
+    {name:'Benelli TNT 150',       price:160296300},
+    {name:'Benelli 180S',          price:293945600},
+    {name:'Benelli TNT 25N',       price:330294000},
+  ],
+  sym: [
+    {name:'Galaxy SYM CL150',      price:99700000},
+    {name:'Galaxy SYM J200',       price:152300000},
+    {name:'Galaxy SYM NH 180',     price:165700000},
+    {name:'Galaxy SYM NA250',      price:197800000},
+    {name:'Galaxy SYM SR200',      price:147300000},
+  ],
+  tvs: [
+    {name:'TVS HLX 150',           price:126400000},
+    {name:'TVS Apache RTR 200',    price:370000000},
+  ],
+  honda: [
+    {name:'Honda Vario 150',       price:229000000},
+  ],
+  behpar: [
+    {name:'Behpar 125 (بدون استارت)', price:49900000},
+    {name:'Behpar 125 (استارتی)',  price:77600000},
+    {name:'Behpar SP200 Boxer',    price:92000000},
+    {name:'Behpar BP200 Trail',    price:205000000},
+    {name:'Behpar BP249 Trail',    price:225000000},
+  ],
+  erfan: [
+    {name:'Erfan 110',             price:91000000},
+    {name:'Erfan 125',             price:73800000},
+    {name:'Erfan Avenger 220 (باجاج)', price:299000000},
+  ],
+  italmoto: [
+    {name:'Italmoto Nevia 150',    price:158500000},
+    {name:'Italmoto Nevia 150 (پایه)', price:103500000},
+  ],
+  keeway: [
+    {name:'Keeway City 150',       price:57900000},
+    {name:'Keeway e-zi (برقی)',    price:51400000},
+    {name:'Keeway Vieste 249',     price:224700000},
+  ],
+  daichi: [
+    {name:'Daichi CR150',          price:119600000},
+  ],
+};
+const currentYear = 1405;
+const RANGE_PCT = 0.05;
+const ROUND_STEP = 100000;
+
+const AGE_MAX_DEP = 0.65;
+const AGE_K       = 0.185;
+const KM_MAX_DEP  = 0.25;
+const KM_K        = 0.00002554;
+
+const REPAIR_PCT   = 0.05;
+const ACCIDENT_PCT = 0.08;
+const COSMETIC_PCT = { excellent:0, minor:0.02, medium:0.05, poor:0.10 };
+const DOCUMENT_PCT = { clean:0, pending:0.03, noplate:0.10, nodoc:0.18 };
+
+function ageDepRate(age){ return age > 0 ? AGE_MAX_DEP * (1 - Math.exp(-AGE_K * age)) : 0; }
+function kmDepRate(km){   return km  > 0 ? KM_MAX_DEP  * (1 - Math.exp(-KM_K  * km )) : 0; }
+function roundPrice(n){   return Math.round(n / ROUND_STEP) * ROUND_STEP; }
+
+/* ---- Persian helpers ---- */
+function toPersianDigits(str){
+  const map = {'0':'۰','1':'۱','2':'۲','3':'۳','4':'۴','5':'۵','6':'۶','7':'۷','8':'۸','9':'۹','.':'٫',',':'،'};
+  return String(str).replace(/[0-9.,]/g, c => map[c] || c);
+}
+function fmtShort(n){
+  n = Math.round(n);
+  if (n >= 1000000000) return toPersianDigits((n/1000000000).toFixed(2).replace(/\.?0+$/,'')) + ' میلیارد';
+  if (n >= 1000000)    return toPersianDigits(Math.round(n/1000000).toLocaleString('fa-IR')) + ' میلیون';
+  return toPersianDigits(n.toLocaleString('fa-IR'));
+}
+function fmt(n){ return toPersianDigits(Math.round(n).toLocaleString('fa-IR')) + ' تومان'; }
+
+/* =========================================================================
+   GAUGE geometry
+   ========================================================================= */
+const G_CX = 120, G_CY = 120, G_R = 92, G_START = 135, G_SWEEP = 270;
+function gaugePolar(deg){ const a = deg * Math.PI/180; return [G_CX + G_R*Math.cos(a), G_CY + G_R*Math.sin(a)]; }
+function gaugeArcPath(){
+  const [x1,y1] = gaugePolar(G_START);
+  const [x2,y2] = gaugePolar(G_START + G_SWEEP);
+  const large = G_SWEEP > 180 ? 1 : 0;
+  return `M ${x1.toFixed(2)} ${y1.toFixed(2)} A ${G_R} ${G_R} 0 ${large} 1 ${x2.toFixed(2)} ${y2.toFixed(2)}`;
+}
+function setupGauge(){
+  const d = gaugeArcPath();
+  document.getElementById('gauge-track').setAttribute('d', d);
+  document.getElementById('gauge-value').setAttribute('d', d);
+}
+function placeGauge(cur){
+  const vp = document.getElementById('gauge-value');
+  const mk = document.getElementById('gauge-marker');
+  const c = Math.max(0, Math.min(1, cur));
+  vp.setAttribute('stroke-dasharray', (c < 0.0006 ? 0.0006 : c).toFixed(4) + ' 1');
+  const [mx,my] = gaugePolar(G_START + G_SWEEP * c);
+  mk.setAttribute('cx', mx.toFixed(2));
+  mk.setAttribute('cy', my.toFixed(2));
+  mk.style.opacity = c < 0.01 ? 0 : 1;
+}
+function animateGauge(retention){
+  const target = Math.max(0, Math.min(1, retention));
+  let reduce = false;
+  try { reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+  if (reduce){ placeGauge(target); return; }
+  const dur = 1150, t0 = performance.now();
+  function frame(now){
+    const p = Math.min(1, (now - t0) / dur);
+    const e = 1 - Math.pow(1 - p, 3);
+    placeGauge(target * e);
+    if (p < 1) requestAnimationFrame(frame);
+    else placeGauge(target);
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ---- count-up for the headline price, with a stable unit ---- */
+function countUpUnit(bigEl, target){
+  let reduce = false;
+  try { reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch(e){}
+  let unit = '', scale = 1, decimals = 0;
+  if (target >= 1000000000){ unit = 'میلیارد'; scale = 1000000000; decimals = 2; }
+  else if (target >= 1000000){ unit = 'میلیون'; scale = 1000000; decimals = 0; }
+  const render = (val) => {
+    let txt;
+    if (unit){
+      let s = (val/scale).toFixed(decimals);
+      if (decimals) s = s.replace(/\.?0+$/,'');
+      txt = toPersianDigits(s);
+    } else {
+      txt = toPersianDigits(Math.round(val).toLocaleString('fa-IR'));
+    }
+    bigEl.innerHTML = txt + (unit ? ' <span class="gauge-unit">' + unit + '</span>' : ' <span class="gauge-unit">تومان</span>');
+  };
+  if (reduce){ render(target); return; }
+  const dur = 950, from = Math.round(target * 0.8), t0 = performance.now();
+  function frame(now){
+    const p = Math.min(1, (now - t0) / dur);
+    const e = 1 - Math.pow(1 - p, 3);
+    render(from + (target - from) * e);
+    if (p < 1) requestAnimationFrame(frame);
+    else render(target);
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ---- snappy value reveal for breakdown rows ---- */
+function setVal(el, txt){
+  if (!el) return;
+  el.textContent = txt;
+  const row = el.closest('.bd-row, .bd-total');
+  if (row){ row.classList.remove('counting'); void row.offsetWidth; row.classList.add('counting'); }
+}
+
+function populateYears(){
+  const sel = document.getElementById('year');
+  sel.innerHTML = '<option value="">انتخاب سال</option>';
+  for (let y = currentYear; y >= currentYear - 25; y--){
+    const o = document.createElement('option');
+    o.value = y; o.textContent = toPersianDigits(y);
+    sel.appendChild(o);
+  }
+}
+
+function updateModels(){
+  const brand = document.getElementById('brand').value;
+  const sel = document.getElementById('model');
+  document.getElementById('base-hint').textContent = '';
+  document.getElementById('base-hint').className = 'hint';
+  if (!brand || !modelsData[brand]){
+    sel.innerHTML = '<option value="">ابتدا برند را انتخاب کنید</option>';
+    document.getElementById('base-price').value = '';
+    return;
+  }
+  sel.innerHTML = '<option value="">انتخاب مدل</option>';
+  modelsData[brand].forEach((m,i) => {
+    const o = document.createElement('option');
+    o.value = i; o.textContent = m.name;
+    sel.appendChild(o);
+  });
+}
+
+function updateBasePrice(){
+  const brand = document.getElementById('brand').value;
+  const idx = document.getElementById('model').value;
+  if (brand && idx !== '' && modelsData[brand]){
+    const m = modelsData[brand][parseInt(idx)];
+    document.getElementById('base-price').value = m.price;
+    const h = document.getElementById('base-hint');
+    h.textContent = '✓ قیمت پایه پیشنهادی — می‌توانید ویرایش کنید';
+    h.className = 'hint success';
+    previewCalc();
+  }
+}
+
+function onBaseInput(){
+  const el = document.getElementById('base-price');
+  const val = parseInt(el.value);
+  const h = document.getElementById('base-hint');
+  if (val > 0){
+    el.classList.remove('invalid','shake');
+    h.textContent = 'معادل: ' + toPersianDigits(val.toLocaleString('fa-IR')) + ' تومان';
+    h.className = 'hint';
+  } else if (h.className.indexOf('error') === -1){ h.textContent = ''; }
+  previewCalc();
+}
+
+function toggleCheck(id){
+  const cb = document.getElementById(id);
+  cb.checked = !cb.checked;
+  onCbChange(id);
+}
+function onCbChange(id){
+  const cb = document.getElementById(id);
+  document.getElementById('cb-'+id).classList.toggle('checked', cb.checked);
+  previewCalc();
+}
+
+function previewCalc(){
+  const yEl = document.getElementById('year');
+  const y = yEl.value;
+  const m = parseInt(document.getElementById('mileage').value) || 0;
+  const yh = document.getElementById('year-hint');
+  if (y){
+    yEl.classList.remove('invalid','shake');
+    const age = Math.max(0, currentYear - parseInt(y));
+    const pct = Math.round(ageDepRate(age) * 100);
+    yh.textContent = age > 0 ? 'افت سن مدل: حدود ٪' + toPersianDigits(pct) + ' از قیمت صفر' : 'مدل امسال — بدون افت سن';
+    yh.className = age > 0 ? 'hint' : 'hint success';
+  } else if (yh.className.indexOf('error') === -1){ yh.textContent = ''; }
+  const mh = document.getElementById('mileage-hint');
+  if (m > 0){ mh.textContent = 'افت کارکرد: حدود ٪' + toPersianDigits(Math.round(kmDepRate(m) * 100)) + ' از قیمت'; mh.className = 'hint'; }
+  else mh.textContent = '';
+}
+
+/* ---- validation (inline) ---- */
+function clearInvalid(el){ if (el) el.classList.remove('invalid','shake'); }
+function markInvalid(el, hintEl, msg){
+  if (el){ el.classList.add('invalid'); void el.offsetWidth; el.classList.add('shake'); setTimeout(()=>el.classList.remove('shake'), 450); }
+  if (hintEl){ hintEl.textContent = msg; hintEl.className = 'hint error'; }
+}
+function validateInputs(focusFirst){
+  const baseEl = document.getElementById('base-price');
+  const yearEl = document.getElementById('year');
+  const baseVal = parseInt(baseEl.value);
+  const yearVal = parseInt(yearEl.value);
+  clearInvalid(baseEl); clearInvalid(yearEl);
+  let firstBad = null;
+  if (!baseVal || baseVal <= 0){
+    markInvalid(baseEl, document.getElementById('base-hint'), 'لطفاً قیمت پایهٔ مدل صفر را وارد کنید.');
+    firstBad = firstBad || baseEl;
+  }
+  if (!yearVal){
+    markInvalid(yearEl, document.getElementById('year-hint'), 'لطفاً سال مدل را انتخاب کنید.');
+    firstBad = firstBad || yearEl;
+  }
+  if (firstBad && focusFirst){
+    try { firstBad.scrollIntoView({behavior:'smooth', block:'center'}); } catch(e){}
+    setTimeout(()=>{ try { firstBad.focus(); } catch(e){} }, 280);
+  }
+  return !firstBad;
+}
+
+let lastResult = null;
+
+function calculate(){
+  const baseVal  = parseInt(document.getElementById('base-price').value);
+  const yearVal  = parseInt(document.getElementById('year').value);
+  const mileage  = parseInt(document.getElementById('mileage').value) || 0;
+  const repair   = document.getElementById('repair').checked;
+  const accident = document.getElementById('accident').checked;
+  const cosmetic = document.getElementById('cosmetic').value;
+  const docStatus= document.getElementById('doc-status').value;
+  const brand    = document.getElementById('brand').value;
+  const modelIdx = document.getElementById('model').value;
+
+  if (!validateInputs(true)) return false;
+
+  const brandNames = {
+    yamaha:'یاماها', benelli:'بنلی', sym:'گلکسی SYM', tvs:'TVS',
+    honda:'هوندا', behpar:'به‌پر', erfan:'عرفان', italmoto:'ایتال موتو',
+    keeway:'کی‌وی', daichi:'دایچی'
+  };
+  let name;
+  if (brand && modelIdx !== '' && modelsData[brand])
+    name = (brandNames[brand]||brand) + ' ' + modelsData[brand][parseInt(modelIdx)].name;
+  else if (brand)
+    name = (brandNames[brand]||brand) + ' (مدل دلخواه)';
+  else
+    name = 'موتورسیکلت کارکرده';
+  name += ' — سال ' + toPersianDigits(yearVal);
+
+  /* ---- declining-balance depreciation (ترتیب در نتیجه بی‌اثر است) ---- */
+  const age = yearVal ? Math.max(0, currentYear - yearVal) : 0;
+  const rAge      = ageDepRate(age);
+  const rKm       = kmDepRate(mileage);
+  const rRepair   = repair   ? REPAIR_PCT   : 0;
+  const rAccident = accident ? ACCIDENT_PCT : 0;
+  const rCosmetic = COSMETIC_PCT[cosmetic] || 0;
+  const rDoc      = DOCUMENT_PCT[docStatus] || 0;
+
+  let running = baseVal;
+  const yearDed     = running * rAge;      running -= yearDed;
+  const mileageDed  = running * rKm;       running -= mileageDed;
+  const repairDed   = running * rRepair;   running -= repairDed;
+  const accidentDed = running * rAccident; running -= accidentDed;
+  const cosmeticDed = running * rCosmetic; running -= cosmeticDed;
+  const documentDed = running * rDoc;      running -= documentDed;
+
+  const mid  = roundPrice(running);
+  const low  = roundPrice(running * (1 - RANGE_PCT));
+  const high = roundPrice(running * (1 + RANGE_PCT));
+  const retention = baseVal > 0 ? Math.max(0, Math.min(1, mid / baseVal)) : 0;
+
+  const pctOfBase = v => Math.round(v / baseVal * 100);
+
+  /* ---- header ---- */
+  document.getElementById('res-name').textContent = name;
+
+  /* ---- gauge ---- */
+  const bigEl = document.getElementById('gauge-big');
+  bigEl.classList.remove('shine'); void bigEl.offsetWidth; bigEl.classList.add('shine');
+  setTimeout(()=>bigEl.classList.remove('shine'), 1900);
+  countUpUnit(bigEl, mid);
+  document.getElementById('gauge-exact').textContent = fmt(mid);
+  document.getElementById('gauge-retention').textContent = '٪' + toPersianDigits(Math.round(retention*100)) + ' از ارزش مدل صفر';
+  animateGauge(retention);
+
+  /* ---- range chips ---- */
+  document.getElementById('res-low').textContent  = fmtShort(low)  + ' تومان';
+  document.getElementById('res-mid').textContent  = fmtShort(mid)  + ' تومان';
+  document.getElementById('res-high').textContent = fmtShort(high) + ' تومان';
+
+  /* ---- breakdown ---- */
+  setVal(document.getElementById('res-base'), fmt(baseVal));
+  const showDed = (rowId, valId, dedToman, show, lblId, lblText) => {
+    document.getElementById(rowId).style.display = show ? 'flex' : 'none';
+    if (!show) return;
+    if (lblId && lblText){ const l = document.getElementById(lblId); if (l) l.textContent = lblText; }
+    setVal(document.getElementById(valId), '− ' + fmt(dedToman));
+  };
+  showDed('row-year','res-year-ded', yearDed, yearDed>0, 'lbl-year',
+          'کاهش سال مدل (٪' + toPersianDigits(pctOfBase(yearDed)) + ' از قیمت صفر)');
+  showDed('row-mileage','res-mileage-ded', mileageDed, mileageDed>0, 'lbl-mileage',
+          'کاهش کارکرد (٪' + toPersianDigits(pctOfBase(mileageDed)) + ' از قیمت صفر)');
+  showDed('row-repair','res-repair-ded', repairDed, repairDed>0, null, null);
+  showDed('row-accident','res-accident-ded', accidentDed, accidentDed>0, null, null);
+  showDed('row-cosmetic','res-cosmetic-ded', cosmeticDed, cosmeticDed>0, 'lbl-cosmetic',
+          'کاهش وضعیت ظاهری (٪' + toPersianDigits(Math.round(rCosmetic*100)) + ')');
+  showDed('row-document','res-document-ded', documentDed, documentDed>0, 'lbl-document',
+          'کاهش سند و پلاک (٪' + toPersianDigits(Math.round(rDoc*100)) + ')');
+  setVal(document.getElementById('res-total'), fmt(mid));
+
+  /* ---- pills ---- */
+  const pills = [];
+  if (age>0) pills.push('📅 ' + toPersianDigits(age) + ' سال از ساخت');
+  if (mileage>0) pills.push('🛣️ ' + toPersianDigits(mileage.toLocaleString('fa-IR')) + ' کیلومتر');
+  if (repair)   pills.push('🔧 تعمیری');
+  if (accident) pills.push('⚠️ تصادفی');
+  const cosLabels = { minor:'🎨 خط و خش جزئی', medium:'🎨 خوردگی متوسط', poor:'🎨 بدنه فرسوده' };
+  if (cosLabels[cosmetic]) pills.push(cosLabels[cosmetic]);
+  const docLabels = { pending:'📄 سند در دست اقدام', noplate:'📄 بدون پلاک', nodoc:'📄 فاقد سند' };
+  if (docLabels[docStatus]) pills.push(docLabels[docStatus]);
+  document.getElementById('summary-pills').innerHTML = pills.map(p=>`<span class="pill">${p}</span>`).join('');
+
+  /* ---- store for certificate / share ---- */
+  const cosTextMap = { excellent:'عالی و بدون خط و خش', minor:'خط و خش جزئی', medium:'رنگ‌شدگی/خوردگی متوسط', poor:'نیازمند بازسازی' };
+  const docTextMap = { clean:'پلاک‌دار با سند معتبر', pending:'پلاک‌دار، سند در دست اقدام', noplate:'بدون پلاک', nodoc:'فاقد سند / مدارک ناقص' };
+  const dedRows = [];
+  if (yearDed>0)     dedRows.push(['کاهش سال مدل ('+toPersianDigits(age)+' سال)', yearDed]);
+  if (mileageDed>0)  dedRows.push(['کاهش کارکرد ('+toPersianDigits(mileage.toLocaleString('fa-IR'))+' کیلومتر)', mileageDed]);
+  if (repairDed>0)   dedRows.push(['کاهش تعمیرات اساسی', repairDed]);
+  if (accidentDed>0) dedRows.push(['کاهش سابقهٔ تصادف', accidentDed]);
+  if (cosmeticDed>0) dedRows.push(['کاهش وضعیت ظاهری بدنه', cosmeticDed]);
+  if (documentDed>0) dedRows.push(['کاهش وضعیت سند و پلاک', documentDed]);
+  lastResult = { name, baseVal, mid, low, high, age, mileage, cosmetic: cosTextMap[cosmetic], docStatus: docTextMap[docStatus], dedRows };
+
+  /* ---- reveal ---- */
+  document.getElementById('empty-panel').style.display = 'none';
+  const card = document.getElementById('result-card');
+  card.classList.remove('revealing'); void card.offsetWidth;
+  card.classList.add('visible','revealing');
+  clearTimeout(card._animTimer);
+  card._animTimer = setTimeout(()=>card.classList.remove('revealing'), 1700);
+  document.getElementById('reset-btn').classList.add('visible');
+
+  if (window.matchMedia && window.matchMedia('(max-width: 940px)').matches){
+    setTimeout(()=>{ try { card.scrollIntoView({behavior:'smooth', block:'start'}); } catch(e){} }, 120);
+  }
+  return true;
+}
+
+function resetForm(){
+  ['brand','model','year'].forEach(id=>document.getElementById(id).value='');
+  ['base-price','mileage'].forEach(id=>document.getElementById(id).value='');
+  ['base-hint','year-hint','mileage-hint'].forEach(id=>{ const h = document.getElementById(id); h.textContent=''; h.className='hint'; });
+  ['base-price','year'].forEach(id=>document.getElementById(id).classList.remove('invalid','shake'));
+  document.getElementById('cosmetic').value='excellent';
+  document.getElementById('doc-status').value='clean';
+  ['repair','accident'].forEach(id=>{ document.getElementById(id).checked=false; document.getElementById('cb-'+id).classList.remove('checked'); });
+  document.getElementById('model').innerHTML='<option value="">ابتدا برند را انتخاب کنید</option>';
+  const card = document.getElementById('result-card');
+  card.classList.remove('visible','revealing');
+  placeGauge(0);
+  document.getElementById('reset-btn').classList.remove('visible');
+  document.getElementById('empty-panel').style.display='block';
+}
+
+/* ---- toast ---- */
+function toast(msg){
+  let t = document.getElementById('est-toast');
+  if (!t){ t = document.createElement('div'); t.id = 'est-toast'; t.className = 'est-toast'; document.body.appendChild(t); }
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._tm); t._tm = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+/* ---- share ---- */
+function buildShareText(){
+  if (!lastResult) return '';
+  const L = n => toPersianDigits(n.toLocaleString('fa-IR'));
+  return lastResult.name + '\n'
+    + '🏷️ قیمت کارشناسی: ' + L(lastResult.mid) + ' تومان\n'
+    + '📊 بازهٔ منصفانه (±۵٪): ' + L(lastResult.low) + ' تا ' + L(lastResult.high) + ' تومان\n'
+    + '🔧 برآورد توسط سامانهٔ ارزیابی بازرگانی اسماعیلی';
+}
+function shareTo(target){
+  if (!lastResult){ toast('ابتدا قیمت را محاسبه کنید'); return; }
+  const txt = buildShareText();
+  if (target === 'whatsapp'){
+    window.open('https://wa.me/?text=' + encodeURIComponent(txt), '_blank');
+  } else if (target === 'telegram'){
+    window.open('https://t.me/share/url?url=' + encodeURIComponent('https://esmaeilitrading.com') + '&text=' + encodeURIComponent(txt), '_blank');
+  } else if (target === 'copy'){
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(()=>toast('متن نتیجه کپی شد ✓'), ()=>fallbackCopy(txt));
+    } else { fallbackCopy(txt); }
+  }
+}
+function fallbackCopy(txt){
+  const ta = document.createElement('textarea'); ta.value = txt;
+  ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); toast('متن نتیجه کپی شد ✓'); } catch(e){ alert(txt); }
+  document.body.removeChild(ta);
+}
+
+/* ---- printable certificate ---- */
+function downloadCertificate(){
+  if (!lastResult){ toast('ابتدا قیمت را محاسبه کنید'); return; }
+  const L = n => toPersianDigits(Math.round(n).toLocaleString('fa-IR'));
+  let today;
+  try { today = new Intl.DateTimeFormat('fa-IR-u-ca-persian', {year:'numeric',month:'long',day:'numeric'}).format(new Date()); }
+  catch(e){ today = toPersianDigits(currentYear); }
+  const ref = 'EST-' + String(Date.now()).slice(-8);
+  const logoEl = document.querySelector('.header-brand img');
+  const logo = logoEl ? logoEl.src : '';
+  const dedHtml = lastResult.dedRows.map(r =>
+    '<tr class="ded"><td>'+r[0]+'</td><td class="num">- '+L(r[1])+' تومان</td></tr>').join('');
+  const doc =
+'<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8">'
++'<meta name="viewport" content="width=device-width,initial-scale=1"><title>گواهی کارشناسی — '+lastResult.name+'</title>'
++'<style>'
++"@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap');"
++'*{box-sizing:border-box;margin:0;padding:0;font-family:Vazirmatn,sans-serif;}'
++'body{color:#1a2240;padding:30px;background:#fff;}'
++'.cert{max-width:760px;margin:0 auto;border:2px solid #121B60;border-radius:14px;padding:26px 30px;}'
++'.head{display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #e8edf3;padding-bottom:16px;margin-bottom:18px;}'
++'.head img{height:44px;}'
++'.org{text-align:left;}.org b{font-size:14px;color:#121B60;}.org span{font-size:11px;color:#888;display:block;}'
++'h1{font-size:20px;color:#121B60;text-align:center;}'
++'.sub{text-align:center;font-size:12px;color:#999;margin:4px 0 18px;}'
++'.meta{display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:16px;}'
++'.veh{background:#F2F7FA;border-radius:10px;padding:13px;font-size:15px;font-weight:700;color:#121B60;text-align:center;margin-bottom:16px;}'
++'table{width:100%;border-collapse:collapse;margin-bottom:14px;font-size:13px;}'
++'td{padding:8px 6px;border-bottom:1px solid #eef2f7;}'
++'td.num{text-align:left;direction:ltr;font-weight:500;}'
++'.base td{font-weight:700;color:#121B60;}.ded td.num{color:#c0392b;}'
++'.pbox{background:#121B60;color:#fff;border-radius:12px;padding:18px;text-align:center;margin:16px 0;}'
++'.pbox .l{font-size:12px;opacity:.7;margin-bottom:6px;}.pbox .v{font-size:25px;font-weight:700;}'
++'.pbox .r{font-size:12px;opacity:.78;margin-top:8px;}'
++'.note{font-size:11px;color:#888;line-height:1.9;border-top:1px solid #eef2f7;padding-top:12px;}'
++'.sign{display:flex;justify-content:space-between;margin-top:34px;font-size:12px;color:#555;}'
++'.sign div{width:45%;text-align:center;}.sign .ln{border-top:1px dashed #aaa;margin-top:42px;padding-top:6px;}'
++'@media print{body{padding:0;}.cert{border:none;}@page{margin:14mm;}}'
++'</style></head><body><div class="cert">'
++'<div class="head">'+(logo?'<img src="'+logo+'" alt="logo" style="filter:none;">':'<b style="color:#121B60;font-size:18px;letter-spacing:2px;">ESMAEILI</b>')
++'<div class="org"><b>بازرگانی اسماعیلی</b><span>سامانهٔ ارزیابی قیمت موتورسیکلت</span></div></div>'
++'<h1>گواهی ارزیابی کارشناسی قیمت</h1><div class="sub">برآورد قیمت موتورسیکلت کارکرده</div>'
++'<div class="meta"><span>شمارهٔ گواهی: '+ref+'</span><span>تاریخ صدور: '+today+'</span></div>'
++'<div class="veh">'+lastResult.name+'</div>'
++'<table><tr class="base"><td>قیمت پایهٔ مدل صفر</td><td class="num">'+L(lastResult.baseVal)+' تومان</td></tr>'+dedHtml+'</table>'
++'<table><tr><td>وضعیت ظاهری بدنه</td><td class="num">'+lastResult.cosmetic+'</td></tr>'
++'<tr><td>وضعیت سند و پلاک</td><td class="num">'+lastResult.docStatus+'</td></tr></table>'
++'<div class="pbox"><div class="l">قیمت کارشناسی پیشنهادی</div><div class="v">'+L(lastResult.mid)+' تومان</div>'
++'<div class="r">حد پایین '+L(lastResult.low)+' — حد بالا '+L(lastResult.high)+' تومان (±۵٪)</div></div>'
++'<div class="note">این گواهی صرفاً برآوردی اولیه بر پایهٔ اطلاعات واردشده توسط کاربر است و سند رسمی محسوب نمی‌شود. قیمت قطعی پس از بازدید حضوری و بررسی فنی تعیین می‌گردد و ممکن است متناسب با نوسانات بازار تغییر کند.</div>'
++'<div class="sign"><div><div class="ln">مهر و امضای کارشناس</div></div><div><div class="ln">امضای مالک</div></div></div>'
++'</div></body></html>';
+  printDocument(doc, 'گواهی-کارشناسی');
+}
+
+function printDocument(htmlStr, title){
+  let f = document.getElementById('cert-frame');
+  if (f) f.parentNode.removeChild(f);
+  f = document.createElement('iframe');
+  f.id = 'cert-frame';
+  f.style.position = 'fixed'; f.style.left = '-9999px'; f.style.top = '0';
+  f.style.width = '0'; f.style.height = '0'; f.style.border = '0';
+  document.body.appendChild(f);
+  try {
+    const d = f.contentWindow.document;
+    d.open(); d.write(htmlStr); d.close();
+    setTimeout(function(){
+      try { f.contentWindow.focus(); f.contentWindow.print(); }
+      catch(e){ openFallback(htmlStr); }
+    }, 500);
+  } catch(e){ openFallback(htmlStr); }
+}
+function openFallback(htmlStr){
+  try {
+    const w = window.open('', '_blank');
+    if (w){ w.document.open(); w.document.write(htmlStr); w.document.close(); setTimeout(function(){ try{ w.focus(); w.print(); }catch(e){} }, 500); }
+    else { toast('برای دریافت گواهی، اجازهٔ چاپ/پنجره را بدهید'); }
+  } catch(e){ toast('دریافت گواهی در این محیط ممکن نیست'); }
+}
+
+/* ---- calculate button: ripple + loading state ---- */
+function runCalc(ev){
+  const btn = document.getElementById('calc-btn');
+  if (btn && ev && typeof ev.clientX === 'number'){
+    const rect = btn.getBoundingClientRect();
+    const dia = Math.max(rect.width, rect.height);
+    const r = document.createElement('span');
+    r.className = 'ripple';
+    r.style.width = r.style.height = dia + 'px';
+    r.style.left = (ev.clientX - rect.left - dia/2) + 'px';
+    r.style.top  = (ev.clientY - rect.top  - dia/2) + 'px';
+    btn.appendChild(r);
+    setTimeout(function(){ if (r.parentNode) r.parentNode.removeChild(r); }, 650);
+  }
+  if (!validateInputs(true)) return;
+  const label = document.getElementById('calc-btn-label');
+  const original = label ? label.textContent : '';
+  if (btn) btn.classList.add('loading');
+  if (label) label.textContent = 'در حال محاسبه…';
+  setTimeout(function(){
+    if (btn) btn.classList.remove('loading');
+    if (label) label.textContent = original;
+    calculate();
+  }, 420);
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  setupGauge();
+  placeGauge(0);
+  populateYears();
+
+  const g = id => document.getElementById(id);
+  g('brand').addEventListener('change', updateModels);
+  g('model').addEventListener('change', updateBasePrice);
+  g('base-price').addEventListener('input', onBaseInput);
+  g('year').addEventListener('change', previewCalc);
+  g('mileage').addEventListener('input', previewCalc);
+  g('cosmetic').addEventListener('change', previewCalc);
+  g('doc-status').addEventListener('change', previewCalc);
+
+  g('repair').addEventListener('change', function(){ onCbChange('repair'); });
+  g('accident').addEventListener('change', function(){ onCbChange('accident'); });
+  const rowToggle = id => function(e){
+    const tag = e.target.tagName;
+    if (tag === 'INPUT' || tag === 'LABEL') return;
+    toggleCheck(id);
+  };
+  g('cb-repair').addEventListener('click', rowToggle('repair'));
+  g('cb-accident').addEventListener('click', rowToggle('accident'));
+
+  g('calc-btn').addEventListener('click', function(e){ runCalc(e); });
+  g('reset-btn').addEventListener('click', resetForm);
+
+  g('btn-cert').addEventListener('click', downloadCertificate);
+  g('btn-whatsapp').addEventListener('click', function(){ shareTo('whatsapp'); });
+  g('btn-telegram').addEventListener('click', function(){ shareTo('telegram'); });
+  g('btn-copy').addEventListener('click', function(){ shareTo('copy'); });
+});
+</script>
+</body>
+</html>

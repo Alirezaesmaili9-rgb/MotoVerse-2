@@ -13,6 +13,9 @@ import '../../features/marketplace/presentation/screens/favorites_screen.dart';
 import '../../features/marketplace/presentation/screens/marketplace_screen.dart';
 import '../../features/marketplace/presentation/screens/orders_screen.dart';
 import '../../features/marketplace/presentation/screens/product_detail_screen.dart';
+import '../../features/tools/domain/entities/embedded_tool.dart';
+import '../../features/tools/presentation/screens/tool_webview_screen.dart';
+import '../../features/tools/presentation/screens/tools_hub_screen.dart';
 import '../../features/wallet/presentation/screens/recharge_screen.dart';
 import '../../features/wallet/presentation/screens/transactions_screen.dart';
 import '../../features/wallet/presentation/screens/wallet_screen.dart';
@@ -77,6 +80,17 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.orders,
         builder: (_, __) => const OrdersScreen(),
+      ),
+
+      // Intelligent tools
+      GoRoute(
+        path: AppRoutes.tools,
+        builder: (_, __) => const ToolsHubScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.toolView,
+        builder: (_, state) =>
+            ToolWebViewScreen(tool: state.extra! as EmbeddedTool),
       ),
 
       // Wallet

@@ -75,6 +75,7 @@ lib/
    ├─ maintenance/ { domain · data · presentation }   ← service intervals
    ├─ marketplace/ { domain · data · presentation }   ← parts/accessories, cart, orders
    ├─ wallet/      { domain · data · presentation }   ← balance, recharge, payments
+   ├─ tools/       { domain · data · presentation }   ← MotoFix/MotoSanj/MotoType WebView
    └─ home/        { presentation }                   ← command center + shell
 ```
 
@@ -122,7 +123,29 @@ dummy placeholders), `MvCard`, `PrimaryButton`.
    server-backed cart, checkout, order tracking timeline
 ✅ **Wallet** — balance, transaction history, recharge via a **modular payment
    gateway** abstraction (sandbox impl), 2% cashback, wallet-funded checkout
+✅ **Intelligent tools** — MotoFix / MotoSanj / MotoType embedded **unmodified**
+   via WebView, with a JS bridge to the app's data (see below)
 ✅ Supabase schema for **every** module + Row Level Security + seed data
+
+### Embedded tools bridge (MotoFix / MotoSanj / MotoType)
+
+The three HTML tools are self-contained (no `localStorage`, no `postMessage`,
+no hooks), so they are bundled as assets (`assets/tools/*.html`) and loaded
+**without modification** in a WebView (`features/tools`). The bridge is built
+entirely on the Flutter side:
+
+- **app → tool**: on page load the app injects `window.MotoVerseContext`
+  (the user's primary motorcycle) and dispatches a `motoverse:context` event,
+  so a tool can pre-fill the bike.
+- **tool → app**: the app exposes `window.MotoVerse.sendResult(obj)` (backed by
+  the `MotoVerseBridge` JS channel). Any result a tool sends is persisted to
+  `tool_results` (migration `0005`) against the user + motorcycle.
+
+This keeps the "integrate the final logic without modification" rule intact
+while still wiring the tools to real app data.
+
+> Platform note: WebView needs generated platform folders (`flutter create .`)
+> and Android `INTERNET` permission (present in the default debug manifest).
 
 ### Marketplace + Wallet design notes
 
@@ -141,10 +164,10 @@ dummy placeholders), `MvCard`, `PrimaryButton`.
 These modules have backend tables + RLS ready; the Flutter slices follow the
 exact `domain/data/presentation` pattern above:
 
-- MotoFix (diagnostics) · MotoSanj (valuation) · AI Copilot **(next up)**
-- MotoType (recommendation) · MotoBimeh (insurance)
-- Roadside Assistance (live tracking) · Service Centers (map + booking)
-- Motor World (news) · Admin dashboard · FCM notifications · Analytics
+- AI Copilot **(next up)**
+- MotoBimeh (insurance) · Roadside Assistance (live tracking)
+- Service Centers (map + booking) · Motor World (news)
+- Admin dashboard · FCM notifications · Analytics
 
 ---
 

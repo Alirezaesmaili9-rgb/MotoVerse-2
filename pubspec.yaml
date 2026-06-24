@@ -37,6 +37,9 @@ dependencies:
   google_fonts: ^6.2.1
   flutter_svg: ^2.0.10+1
 
+  # Embedded HTML tools (MotoFix / MotoSanj / MotoType)
+  webview_flutter: ^4.8.0
+
   # Maps & notifications (modular surfaces — wired in core, used by features)
   google_maps_flutter: ^2.6.1
   firebase_core: ^3.1.0
@@ -56,6 +59,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/tools/
   # Vazirmatn (Persian-first) is the brand typeface. The TTF binaries are not
   # committed; add them under assets/fonts/ and uncomment the block below, or
   # rely on the google_fonts package (already a dependency) at runtime.
