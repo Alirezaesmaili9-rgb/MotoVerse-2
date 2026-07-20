@@ -123,7 +123,7 @@ class _MotoNav extends StatelessWidget {
                       height: 56,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
-                          colors: [Color(0xFF2563EB), Color(0xFF3B82F6)],
+                          colors: AppColors.brandGradient,
                         ),
                         shape: BoxShape.circle,
                         border: Border.all(color: AppColors.surface, width: 4),

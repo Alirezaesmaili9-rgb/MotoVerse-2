@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 /// MotoVerse color tokens — the single source of truth for the palette.
-/// Mirrors the brand design system (Revolut/Stripe/Linear-grade fintech feel).
+/// Automotive/motorsport-grade palette (racing orange primary + cool cyan
+/// counter-accent), chosen via the ui-ux-pro-max design-system search for a
+/// motorcycle companion app — replaces the earlier generic fintech blue.
 class AppColors {
   const AppColors._();
 
-  // Primary brand blue
-  static const Color primary = Color(0xFF2563EB);
-  static const Color primaryHover = Color(0xFF1D4ED8);
-  static const Color primaryLight = Color(0xFFDBEAFE);
+  // Primary brand — racing orange
+  static const Color primary = Color(0xFFEA580C);
+  static const Color primaryHover = Color(0xFFC2410C);
+  static const Color primaryLight = Color(0xFFFFEDD5);
 
   // Cyan
   static const Color cyan = Color(0xFF06B6D4);
@@ -47,14 +49,15 @@ class AppColors {
 
   // Gradients
   static const List<Color> brandGradient = [
-    Color(0xFF2563EB),
-    Color(0xFF3B82F6),
-    Color(0xFF06B6D4),
+    Color(0xFFEA580C),
+    Color(0xFFF97316),
+    Color(0xFFFBBF24),
   ];
 
+  /// Health-gauge gradient: low (danger) → mid (warning) → high (success).
   static const List<Color> motorHealthGradient = [
-    Color(0xFF2563EB),
-    Color(0xFF06B6D4),
+    Color(0xFFEF4444),
+    Color(0xFFF59E0B),
     Color(0xFF22C55E),
   ];
 }

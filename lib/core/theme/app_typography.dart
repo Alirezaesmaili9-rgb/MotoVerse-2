@@ -16,7 +16,7 @@ class AppTypography {
       titleLarge: _w(18, FontWeight.w700, primary),
       titleMedium: _w(16, FontWeight.w600, primary),
       titleSmall: _w(14, FontWeight.w600, primary),
-      bodyLarge: _w(15, FontWeight.w400, primary, height: 1.6),
+      bodyLarge: _w(16, FontWeight.w400, primary, height: 1.6),
       bodyMedium: _w(14, FontWeight.w400, secondary, height: 1.6),
       bodySmall: _w(12, FontWeight.w400, secondary, height: 1.5),
       labelLarge: _w(14, FontWeight.w700, primary),
